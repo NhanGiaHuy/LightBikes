@@ -20,6 +20,8 @@
  *
  * This class is the main file and is executed as the game client.
  *
+ * This class is responsible for the GUI
+ *
  * @author Felice Aprile
  * @author Justin W. Flory
  * @author Malcolm Jones
@@ -28,4 +30,11 @@
  */
 public class LightBikes {
 
+    public static void main(String[] args){
+        //Collect initial settings
+        //Start chat client
+        //Create GUI
+        //Create bike
+        //Connect to server/start game
+    }
 }
