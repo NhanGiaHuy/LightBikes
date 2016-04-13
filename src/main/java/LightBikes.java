@@ -6,6 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * LightBikes.java
  *
@@ -28,13 +31,45 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class LightBikes {
+public class LightBikes extends JFrame{
+
+    //These are test items, I'm not sure what we need here yet
+    private JMenuItem jmiExit;
+    private JMenuItem jmiClear;
+    private JMenuItem jmiAbout;
 
     public static void main(String[] args){
         //Collect initial settings
-        //Start chat client
-        //Create GUI
-        //Create bike
+        new LightBikes();//possibly send through size of game grid
+    }
+
+    public LightBikes(){
         //Connect to server/start game
+        //Start chat client
+
+        //Add JMenu
+        JMenuBar menuBar = new JMenuBar();
+            JMenu jmFile = new JMenu("File");
+                jmiClear = new JMenuItem("Clear");
+            jmFile.add(jmiClear);
+                jmiExit = new JMenuItem("Exit");
+            jmFile.add(jmiExit);
+        menuBar.add(jmFile);
+            JMenu jmHelp = new JMenu("Help");
+                jmiAbout = new JMenuItem("About");
+            jmHelp.add(jmiAbout);
+            menuBar.add(jmHelp);
+        add(menuBar, BorderLayout.NORTH);
+
+        //Add chat window to east
+        //Add scoreboard to west
+        //Add game board to center
+        //Add control panel to south
+
+        pack();
+        setLocationRelativeTo(null);
+        setTitle("Light Bikes");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
     }
 }
