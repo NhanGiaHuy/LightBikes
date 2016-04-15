@@ -37,7 +37,7 @@ public class LightBikes extends JFrame {
 
     //These are test items, I'm not sure what we need here yet
     private JMenuItem jmiExit;
-    private JMenuItem jmiClear;
+    private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
 
     public static void main(String[] args){
@@ -51,8 +51,8 @@ public class LightBikes extends JFrame {
         //Add JMenu
         JMenuBar menuBar = new JMenuBar();
             JMenu jmFile = new JMenu("File");
-                jmiClear = new JMenuItem("Clear");
-            jmFile.add(jmiClear);
+                jmiConnect = new JMenuItem("Connect");
+            jmFile.add(jmiConnect);
                 jmiExit = new JMenuItem("Exit");
             jmFile.add(jmiExit);
         menuBar.add(jmFile);
