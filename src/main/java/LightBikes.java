@@ -8,6 +8,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * LightBikes.java
@@ -31,7 +33,7 @@ import java.awt.*;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class LightBikes extends JFrame{
+public class LightBikes extends JFrame {
 
     //These are test items, I'm not sure what we need here yet
     private JMenuItem jmiExit;
@@ -45,7 +47,6 @@ public class LightBikes extends JFrame{
 
     public LightBikes(){
         //Connect to server/start game
-        //Start chat client
 
         //Add JMenu
         JMenuBar menuBar = new JMenuBar();
@@ -62,6 +63,29 @@ public class LightBikes extends JFrame{
         add(menuBar, BorderLayout.NORTH);
 
         //Add chat window to east
+        JPanel chatFrame = new JPanel();
+        JTextArea chat = new JTextArea(25,60);
+        JTextField msg = new JTextField(25);
+        JButton connectToServer = new JButton("Connect");
+        ChatClient chatClient = new ChatClient(chat, msg);
+
+        add(chatFrame, BorderLayout.EAST);
+        chatFrame.add(chat);
+        chatFrame.add(msg);
+        chatFrame.add(connectToServer);
+
+        connectToServer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Connect")) {
+                    chatClient.connect();
+                }
+            }
+        });
+
+        //Start chat client
+        //new ChatClient();
+
         //Add scoreboard to west
         //Add game board to center
         //Add control panel to south
