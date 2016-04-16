@@ -59,7 +59,7 @@ public class LightBikes extends JFrame {
             JMenu jmHelp = new JMenu("Help");
                 jmiAbout = new JMenuItem("About");
             jmHelp.add(jmiAbout);
-            menuBar.add(jmHelp);
+        menuBar.add(jmHelp);
         add(menuBar, BorderLayout.NORTH);
 
         //Add chat window to east
@@ -74,6 +74,7 @@ public class LightBikes extends JFrame {
         chatFrame.add(msg);
         chatFrame.add(connectToServer);
 
+/*
         connectToServer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,9 +83,30 @@ public class LightBikes extends JFrame {
                 }
             }
         });
+        */
 
-        //Start chat client
-        //new ChatClient();
+
+        //Action listener for Menu items
+        ActionListener menuListener = new ActionListener() {
+            public void	actionPerformed(ActionEvent ae){
+
+                Object choice = ae.getSource();
+
+                if(choice == jmiConnect){
+                    String host = JOptionPane.showInputDialog(null, "Enter the host name");
+                    chatClient.connect();
+                    //JUSTIN - PASS THROUGH HOST NAME
+                }else if(choice == jmiExit){
+                    System.exit(0);
+                }else if(choice == jmiAbout){
+                    JOptionPane.showMessageDialog(null, "About");
+                }
+            }
+        };
+
+        jmiConnect.addActionListener(menuListener);
+        jmiExit.addActionListener(menuListener);
+        jmiAbout.addActionListener(menuListener);
 
         //Add scoreboard to west
         //Add game board to center
