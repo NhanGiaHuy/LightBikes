@@ -66,13 +66,11 @@ public class LightBikes extends JFrame {
         JPanel chatFrame = new JPanel();
         JTextArea chat = new JTextArea(25,60);
         JTextField msg = new JTextField(25);
-        JButton connectToServer = new JButton("Connect");
         ChatClient chatClient = new ChatClient(chat, msg);
 
         add(chatFrame, BorderLayout.EAST);
         chatFrame.add(chat);
         chatFrame.add(msg);
-        chatFrame.add(connectToServer);
 
 /*
         connectToServer.addActionListener(new ActionListener() {
