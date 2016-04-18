@@ -21,5 +21,9 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Controller {
+public class Controller extends ActionListener{
+	public Bike bike;
+	public Controller(Bike _bike){
+		bike = _bike;
+	}
 }
