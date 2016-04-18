@@ -77,18 +77,6 @@ public class LightBikes extends JFrame {
         add(gameGrid, BorderLayout.CENTER);
         gameGrid.repaint();
 
-/*
-        connectToServer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getActionCommand().equals("Connect")) {
-                    chatClient.connect();
-                }
-            }
-        });
-        */
-
-
         //Action listener for Menu items
         ActionListener menuListener = new ActionListener() {
             public void	actionPerformed(ActionEvent ae){
@@ -96,7 +84,6 @@ public class LightBikes extends JFrame {
                 Object choice = ae.getSource();
 
                 if(choice == jmiConnect){
-                    String host = JOptionPane.showInputDialog(null, "Enter the host name");
                     chatClient.connect();
                     //JUSTIN - PASS THROUGH HOST NAME
                 }else if(choice == jmiExit){

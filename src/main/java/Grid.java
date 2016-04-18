@@ -25,11 +25,14 @@ import java.awt.*;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-<<<<<<< HEAD
 public class Grid extends JPanel{
 
-   final int WIDTH = 500;
-   final int HEIGHT = 500;
+   private final int GRID_HEIGHT = 100;
+	private final int GRID_WIDTH = 100;
+	private final int DELAY_IN_MILLS = 100;
+	private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
+   private final int WIDTH = GRID_WIDTH * 5;
+   private final int HEIGHT = GRID_HEIGHT * 5;
    private int i = 0;
 
    public Grid(){
@@ -46,11 +49,4 @@ public class Grid extends JPanel{
       
       //Draw snakes on screen here
    }
-=======
-public class Grid {
-	public final int GRID_HEIGHT = 100;
-	public final int GRID_WIDTH = 100;
-	public final int DELAY_IN_MILLS = 100;
-	public int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
->>>>>>> origin/master
 }
