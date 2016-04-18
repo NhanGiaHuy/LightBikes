@@ -39,6 +39,7 @@ public class LightBikes extends JFrame {
     private JMenuItem jmiExit;
     private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
+    private Grid gameGrid;
 
     public static void main(String[] args){
         //Collect initial settings
@@ -71,6 +72,10 @@ public class LightBikes extends JFrame {
         add(chatFrame, BorderLayout.EAST);
         chatFrame.add(chat);
         chatFrame.add(msg);
+        
+        gameGrid = new Grid();
+        add(gameGrid, BorderLayout.CENTER);
+        gameGrid.repaint();
 
 /*
         connectToServer.addActionListener(new ActionListener() {
@@ -114,6 +119,7 @@ public class LightBikes extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Light Bikes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setResizable(false);
         setVisible(true);
     }
 }

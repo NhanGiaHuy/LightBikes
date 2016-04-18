@@ -6,6 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Grid.java
  *
@@ -22,6 +25,24 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Grid {
+public class Grid extends JPanel{
 
+   final int WIDTH = 500;
+   final int HEIGHT = 500;
+   private int i = 0;
+
+   public Grid(){
+      setPreferredSize(new Dimension(WIDTH+1, HEIGHT+1));//Plus one to assure the edge line is shown
+   }
+   
+   public void paintComponent(Graphics g){
+      super.paintComponent(g);
+      //EDGES
+      g.drawLine(0, 0, 0, HEIGHT);//left side
+      g.drawLine(WIDTH, 0, WIDTH, HEIGHT);//right side
+      g.drawLine(0, 0, WIDTH, 0);//top
+      g.drawLine(0, HEIGHT, WIDTH, HEIGHT);//bottom
+      
+      //Draw snakes on screen here
+   }
 }
