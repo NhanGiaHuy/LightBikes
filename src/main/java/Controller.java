@@ -1,3 +1,7 @@
+import java.awt.Choice;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyListener;
+
 /*
  * Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
  *
@@ -21,9 +25,26 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Controller extends ActionListener{
+public class Controller implements KeyListener{
 	public Bike bike;
 	public Controller(Bike _bike){
 		bike = _bike;
+	}
+	
+	public void keyPressed(KeyEvent ke){
+		Object choice = ke.getSource();
+		
+		if(choice == VK_RIGHT){
+			bike.turnEast();
+		}
+		else if(choice == VK_LEFT){
+			bike.turnWest();
+		}
+		else if(choice == VK_UP){
+			bike.turnNorth();
+		}
+		else if(choice == VK_DOWN){
+			bike.turnSouth();
+		}	
 	}
 }

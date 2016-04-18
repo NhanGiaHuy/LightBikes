@@ -24,4 +24,28 @@ package client;
  * @version 2016.04.11.v1
  */
 public class Bike {
+	public int xPosition;
+	public int yPosition;
+	
+	public Bike(int _xPosition, int _yPosition){
+		xPosition = _xPosition;
+		yPosition = _yPosition;
+	}
+	
+	public void turnWest(){
+		
+	}
+	
+	public void turnEast(){
+		
+	}
+	
+	public void turnSouth(){
+		
+	}
+	
+	public void turnNorth(){
+		
+	}
+	
 }

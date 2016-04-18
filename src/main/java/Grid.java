@@ -25,6 +25,7 @@ import java.awt.*;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
+<<<<<<< HEAD
 public class Grid extends JPanel{
 
    final int WIDTH = 500;
@@ -45,4 +46,11 @@ public class Grid extends JPanel{
       
       //Draw snakes on screen here
    }
+=======
+public class Grid {
+	public final int GRID_HEIGHT = 100;
+	public final int GRID_WIDTH = 100;
+	public final int DELAY_IN_MILLS = 100;
+	public int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
+>>>>>>> origin/master
 }
