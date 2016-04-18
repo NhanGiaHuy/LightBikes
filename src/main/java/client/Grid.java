@@ -23,5 +23,7 @@
  * @version 2016.04.11.v1
  */
 public class Grid {
-
+	public final int GRID_HEIGHT = 100;
+	public final int GRID_WIDTH = 100;
+	public int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
 }
