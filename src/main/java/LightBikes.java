@@ -75,7 +75,7 @@ public class LightBikes extends JFrame {
         
         gameGrid = new Grid();
         add(gameGrid, BorderLayout.CENTER);
-        gameGrid.repaint();
+       
 
         //Action listener for Menu items
         ActionListener menuListener = new ActionListener() {
@@ -100,7 +100,7 @@ public class LightBikes extends JFrame {
 
         //Add scoreboard to west
         //Add game board to center
-        //Add control panel to south
+        //Controller cntr = new Controller(new Bike(5, 5));//This is for testing to see if the key lsitener works
 
         pack();
         setLocationRelativeTo(null);
@@ -108,5 +108,6 @@ public class LightBikes extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //setResizable(false);
         setVisible(true);
+        gameGrid.start();
     }
 }

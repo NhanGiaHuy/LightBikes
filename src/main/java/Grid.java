@@ -34,9 +34,22 @@ public class Grid extends JPanel{
    private final int WIDTH = GRID_WIDTH * 5;
    private final int HEIGHT = GRID_HEIGHT * 5;
    private int i = 0;
+   //Colors of lines (maybe set as a user setting?)
+   private final Color PLAYER1 = Color.blue;
+   private final Color PLAYER2 = Color.green;
+   private final Color PLAYER3 = Color.blue;
+   private final Color PLAYER4 = Color.blue;
 
    public Grid(){
       setPreferredSize(new Dimension(WIDTH+1, HEIGHT+1));//Plus one to assure the edge line is shown
+      
+      //Set everything to 0
+      for(int x = 0; x < GRID_WIDTH; x++){
+         for(int y = 0; y < GRID_HEIGHT; y++){
+            grid[x][y] = 0;
+         }
+      }
+      
    }
    
    public void paintComponent(Graphics g){
@@ -48,5 +61,78 @@ public class Grid extends JPanel{
       g.drawLine(0, HEIGHT, WIDTH, HEIGHT);//bottom
       
       //Draw snakes on screen here
+      for(int x = 0; x < GRID_WIDTH; x++){
+         for(int y = 0; y < GRID_HEIGHT; y++){
+            if(grid[x][y] != 0){
+               if(grid[x][y] == 1){
+                  g.setColor(PLAYER1);
+               }else if(grid[x][y] == 2){
+                  g.setColor(PLAYER2);
+               }else if(grid[x][y] == 3){
+                  g.setColor(PLAYER3);
+               }else if(grid[x][y] == 4){
+                  g.setColor(PLAYER4);
+               }
+               g.fillRect(x*5, y*5, 5, 5);
+            }   
+         }
+      }
+   }
+   
+   public void start(){
+   //Testing
+      grid[25][51] = 1;
+      grid[75][25] = 2;
+      grid[25][75] = 3;
+      grid[75][75] = 4;
+      repaint();
+      try{
+         //wait a few seconds
+         Thread.sleep(3000);
+         //go down 7
+         grid[25][51] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][52] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][53] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][54] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][55] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][56] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[25][57] = 1;
+         repaint();
+         //go right 7
+         grid[26][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[27][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[28][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[29][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[30][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[31][57] = 1;
+         repaint();
+         Thread.sleep(DELAY_IN_MILLS);
+         grid[32][57] = 1;
+         repaint();
+      }catch(Exception e){
+      
+      }
    }
 }
