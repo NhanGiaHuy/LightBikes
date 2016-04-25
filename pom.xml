@@ -4,9 +4,64 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
-    <artifactId>main</artifactId>
+    <groupId>edu.rit.LightBikesClient</groupId>
+    <artifactId>LightBikes</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
+    <profiles>
+        <profile>
+            <id>edu.rit.LightBikesClient</id>
+            <build>
+                <finalName>LightBikesClient</finalName>
+                <directory>src/main/java/</directory>
+                <resources>
+                    <resource>
+                        <targetPath>.</targetPath>
+                        <filtering>true</filtering>
+                        <directory>${basedir}/src/main/resources/</directory>
+                        <includes>
+                            <include>*.yml</include>
+                        </includes>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>edu.rit.LightBikesServer</id>
+            <build>
+                <finalName>LightBikesServer</finalName>
+                <directory>src/main/java/</directory>
+                <resources>
+                    <resource>
+                        <targetPath>.</targetPath>
+                        <filtering>true</filtering>
+                        <directory>${basedir}/src/main/resources/</directory>
+                        <includes>
+                            <include>*.yml</include>
+                        </includes>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
