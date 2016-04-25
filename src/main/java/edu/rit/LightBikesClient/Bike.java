@@ -6,7 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-//package client;
+package edu.rit.LightBikesClient;
+
 import java.util.concurrent.TimeUnit;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;

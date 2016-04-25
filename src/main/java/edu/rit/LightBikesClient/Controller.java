@@ -1,7 +1,3 @@
-import java.awt.Choice;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyListener;
-
 /*
  * Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
  *
@@ -9,6 +5,11 @@ import java.awt.event.KeyListener;
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
+package edu.rit.LightBikesClient;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Controller.java
@@ -25,7 +26,8 @@ import java.awt.event.KeyListener;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Controller implements KeyListener{
+public class Controller extends KeyAdapter {
+
 	public Bike bike;
 	public Controller(Bike _bike){
 		bike = _bike;
@@ -34,16 +36,16 @@ public class Controller implements KeyListener{
 	public void keyPressed(KeyEvent ke){
 		Object choice = ke.getSource();
 		
-		if(choice == VK_RIGHT){
+		if(choice.equals(KeyEvent.VK_RIGHT)){
 			bike.turnEast();
 		}
-		else if(choice == VK_LEFT){
+		else if(choice.equals(KeyEvent.VK_LEFT)) {
 			bike.turnWest();
 		}
-		else if(choice == VK_UP){
+		else if(choice.equals(KeyEvent.VK_UP)) {
 			bike.turnNorth();
 		}
-		else if(choice == VK_DOWN){
+		else if(choice.equals(KeyEvent.VK_DOWN)) {
 			bike.turnSouth();
 		}	
 	}
