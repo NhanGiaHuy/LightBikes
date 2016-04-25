@@ -6,6 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+package edu.rit.LightBikesServer;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;

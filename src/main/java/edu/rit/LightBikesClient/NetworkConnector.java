@@ -6,8 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+package edu.rit.LightBikesClient;
+
 /**
- * GameServer.java
+ * NetworkConnector.java
  *
  * Assignment: Final Project
  * Class: Rochester Institute of Technology, ISTE-121.01, 2155
@@ -21,5 +23,5 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class GameServer {
+public class NetworkConnector {
 }

@@ -6,10 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-//package client;
+package edu.rit.LightBikesServer;
 
 /**
- * Bike.java
+ * GameServer.java
  *
  * Assignment: Final Project
  * Class: Rochester Institute of Technology, ISTE-121.01, 2155
@@ -23,29 +23,5 @@
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Bike {
-	public int xPosition;
-	public int yPosition;
-	
-	public Bike(int _xPosition, int _yPosition){
-		xPosition = _xPosition;
-		yPosition = _yPosition;
-	}
-	
-	public void turnWest(){
-		
-	}
-	
-	public void turnEast(){
-		
-	}
-	
-	public void turnSouth(){
-		
-	}
-	
-	public void turnNorth(){
-		
-	}
-	
+public class GameServer {
 }
