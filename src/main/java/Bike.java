@@ -7,6 +7,11 @@
  */
 
 //package client;
+import java.util.concurrent.TimeUnit;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
+
+import sun.net.www.content.text.plain;
 
 /**
  * Bike.java
@@ -26,26 +31,73 @@
 public class Bike {
 	public int xPosition;
 	public int yPosition;
+	public Grid grid;
+	public int player;
 	
-	public Bike(int _xPosition, int _yPosition){
+	public Bike(int _xPosition, int _yPosition, Grid _grid, int _player){
 		xPosition = _xPosition;
 		yPosition = _yPosition;
+		grid = _grid;
+		player = _player;
 	}
 	
+	/*
+	 * Info for each turn*() method.
+	 * First line sets the array value in the direction bike is going to bike id.
+	 * Second line changes bikes position.
+	 * Try loop delays bike movement.
+	 */
+	
 	public void turnWest(){
-		
+		while(true){
+			grid[xPosition-1][yPosition] = player;
+			xPosition = xPosition - 1;
+			try{
+				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
+			}
+			catch(InterruptedException ie){
+				ie.printStackTrace();
+			}
+		}
 	}
 	
 	public void turnEast(){
-		
+		while(true){
+			grid[xPosition+1][yPosition] = player;
+			xPosition = xPosition + 1;
+			try{
+				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
+			}
+			catch(InterruptedException ie){
+				ie.printStackTrace();
+			}
+		}
 	}
 	
 	public void turnSouth(){
-		
+		while(true){
+			grid[xPosition][yPosition+1] = player;
+			yPosition = yPosition + 1;
+			try{
+				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
+			}
+			catch(InterruptedException ie){
+				ie.printStackTrace();
+			}
+		}
 	}
 	
 	public void turnNorth(){
-		
+		while(true){
+			grid[xPosition][yPosition-1] = player;
+			yPosition = yPosition - 1;
+			try{
+				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
+			}
+			catch(InterruptedException ie){
+				ie.printStackTrace();
+			}
+		}
 	}
 	
 }
