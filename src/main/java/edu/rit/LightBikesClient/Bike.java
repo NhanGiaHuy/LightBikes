@@ -9,9 +9,7 @@
 package edu.rit.LightBikesClient;
 
 import java.util.concurrent.TimeUnit;
-
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
-
 import sun.net.www.content.text.plain;
 
 /**
@@ -30,11 +28,14 @@ import sun.net.www.content.text.plain;
  * @version 2016.04.11.v1
  */
 public class Bike {
-	public int xPosition;
-	public int yPosition;
-	public Grid grid;
-	public int player;
-	
+
+    private final int DELAY_IN_MILLS = 100;
+
+    private int player;
+    private int xPosition;
+    private int yPosition;
+    private Grid grid;
+
 	public Bike(int _xPosition, int _yPosition, Grid _grid, int _player){
 		xPosition = _xPosition;
 		yPosition = _yPosition;
@@ -48,7 +49,7 @@ public class Bike {
 	 * Second line changes bikes position.
 	 * Try loop delays bike movement.
 	 */
-	
+
 	public void turnWest(){
 		while(true){
 			grid[xPosition-1][yPosition] = player;
@@ -61,7 +62,7 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnEast(){
 		while(true){
 			grid[xPosition+1][yPosition] = player;
@@ -74,7 +75,7 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnSouth(){
 		while(true){
 			grid[xPosition][yPosition+1] = player;
@@ -87,7 +88,7 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnNorth(){
 		while(true){
 			grid[xPosition][yPosition-1] = player;
@@ -100,5 +101,5 @@ public class Bike {
 			}
 		}
 	}
-	
+
 }
