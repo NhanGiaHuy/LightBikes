@@ -10,10 +10,6 @@ package edu.rit.LightBikesClient;
 
 import java.util.concurrent.TimeUnit;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
-
-import sun.net.www.content.text.plain;
-
 /**
  * Bike.java
  *
@@ -30,6 +26,7 @@ import sun.net.www.content.text.plain;
  * @version 2016.04.11.v1
  */
 public class Bike {
+<<<<<<< HEAD
 	public int xPosition;
 	public int yPosition;
 	public int[][] grid;
@@ -37,6 +34,17 @@ public class Bike {
     private final int DELAY_IN_MILLS = 100;
 	
 	public Bike(int _xPosition, int _yPosition, int[][] _grid, int _player){
+=======
+
+    private final int DELAY_IN_MILLS = 100;
+
+    private int player;
+    private int xPosition;
+    private int yPosition;
+    private Grid grid;
+
+	public Bike(int _xPosition, int _yPosition, Grid _grid, int _player){
+>>>>>>> origin/master
 		xPosition = _xPosition;
 		yPosition = _yPosition;
 		grid = _grid;
@@ -49,10 +57,10 @@ public class Bike {
 	 * Second line changes bikes position.
 	 * Try loop delays bike movement.
 	 */
-	
+
 	public void turnWest(){
 		while(true){
-			grid[xPosition-1][yPosition] = player;
+			//grid[xPosition-1][yPosition] = player;
 			xPosition = xPosition - 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -62,10 +70,10 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnEast(){
 		while(true){
-			grid[xPosition+1][yPosition] = player;
+			//grid[xPosition+1][yPosition] = player;
 			xPosition = xPosition + 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -75,10 +83,10 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnSouth(){
 		while(true){
-			grid[xPosition][yPosition+1] = player;
+			//grid[xPosition][yPosition+1] = player;
 			yPosition = yPosition + 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -88,10 +96,10 @@ public class Bike {
 			}
 		}
 	}
-	
+
 	public void turnNorth(){
 		while(true){
-			grid[xPosition][yPosition-1] = player;
+			//grid[xPosition][yPosition-1] = player;
 			yPosition = yPosition - 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -101,5 +109,5 @@ public class Bike {
 			}
 		}
 	}
-	
+
 }

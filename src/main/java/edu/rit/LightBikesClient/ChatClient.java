@@ -46,12 +46,9 @@ public class ChatClient {
         this.chat = chat;
         this.newMsg = newMsg;
 
-        newMsg.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                send(newMsg.getText());
-                newMsg.setText("");
-            }
+        newMsg.addActionListener(actionEvent -> {
+            send(newMsg.getText());
+            newMsg.setText("");
         });
     }
 
