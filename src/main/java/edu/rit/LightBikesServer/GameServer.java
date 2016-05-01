@@ -8,6 +8,12 @@
 
 package edu.rit.LightBikesServer;
 
+import java.io.*;
+import java.net.*;
+import java.util.Vector;
+import java.util.Scanner;
+
+
 /**
  * GameServer.java
  *
@@ -23,5 +29,30 @@ package edu.rit.LightBikesServer;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
+
 public class GameServer {
+    private static final int PORT = 8888;
+    private Vector<Lobby> lobbies = new Vector<Lobby>();
+
+
+    public static void main (String[] args) {
+        new GameServer();
+    }
+
+    public GameServer() {
+        ServerSocket ss = null;
+        Socket s = null;
+        try {
+            ss = new ServerSocket(PORT);
+            System.out.println("Waiting for client connections...");
+            while (true) {
+                s = ss.accept();
+                System.out.println("Caught one - " + s);
+                //Player temp = new Player(s);
+                new Thread(new Player(s, lobbies)).start();
+            }
+        }
+        catch (IOException ioe) {
+        }
+    }
 }
