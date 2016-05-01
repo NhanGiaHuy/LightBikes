@@ -9,6 +9,7 @@
 package edu.rit.LightBikesClient;
 
 import java.util.concurrent.TimeUnit;
+
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import sun.net.www.content.text.plain;
 
@@ -28,25 +29,13 @@ import sun.net.www.content.text.plain;
  * @version 2016.04.11.v1
  */
 public class Bike {
-<<<<<<< HEAD
 	public int xPosition;
 	public int yPosition;
 	public int[][] grid;
 	public int player;
     private final int DELAY_IN_MILLS = 100;
-	
+
 	public Bike(int _xPosition, int _yPosition, int[][] _grid, int _player){
-=======
-
-    private final int DELAY_IN_MILLS = 100;
-
-    private int player;
-    private int xPosition;
-    private int yPosition;
-    private Grid grid;
-
-	public Bike(int _xPosition, int _yPosition, Grid _grid, int _player){
->>>>>>> origin/master
 		xPosition = _xPosition;
 		yPosition = _yPosition;
 		grid = _grid;
