@@ -9,8 +9,6 @@
 package edu.rit.LightBikesClient;
 
 import java.util.concurrent.TimeUnit;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
-import sun.net.www.content.text.plain;
 
 /**
  * Bike.java
@@ -52,7 +50,7 @@ public class Bike {
 
 	public void turnWest(){
 		while(true){
-			grid[xPosition-1][yPosition] = player;
+			//grid[xPosition-1][yPosition] = player;
 			xPosition = xPosition - 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -65,7 +63,7 @@ public class Bike {
 
 	public void turnEast(){
 		while(true){
-			grid[xPosition+1][yPosition] = player;
+			//grid[xPosition+1][yPosition] = player;
 			xPosition = xPosition + 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -78,7 +76,7 @@ public class Bike {
 
 	public void turnSouth(){
 		while(true){
-			grid[xPosition][yPosition+1] = player;
+			//grid[xPosition][yPosition+1] = player;
 			yPosition = yPosition + 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
@@ -91,7 +89,7 @@ public class Bike {
 
 	public void turnNorth(){
 		while(true){
-			grid[xPosition][yPosition-1] = player;
+			//grid[xPosition][yPosition-1] = player;
 			yPosition = yPosition - 1;
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
