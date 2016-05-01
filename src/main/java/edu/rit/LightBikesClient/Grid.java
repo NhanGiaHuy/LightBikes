@@ -52,7 +52,15 @@ public class Grid extends JPanel {
                 grid[x][y] = 0;
             }
         }
-
+        
+        Bike bike1 = new Bike(25, 25, grid, 1, Grid);
+        Bike bike2 = new Bike(75, 25, grid, 2, Grid);
+        Bike bike3 = new Bike(25, 75, grid, 3, Grid);
+        Bike bike4 = new Bike(75, 75, grid, 4, Grid);
+        Controller c1 = new Controller(bike1);
+        Controller c2 = new Controller(bike2);
+        Controller c3 = new Controller(bike3);
+        Controller c4 = new Controller(bike4);
     }
 
     public void paintComponent(Graphics g) {
@@ -83,12 +91,6 @@ public class Grid extends JPanel {
     }
 
     public void start() {
-        //Testing
-        grid[25][51] = 1;
-        grid[75][25] = 2;
-        grid[25][75] = 3;
-        grid[75][75] = 4;
-        repaint();
         try {
             //wait a few seconds
             Thread.sleep(3000);
