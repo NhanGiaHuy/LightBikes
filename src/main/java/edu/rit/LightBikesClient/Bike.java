@@ -31,17 +31,19 @@ import sun.net.www.content.text.plain;
 public class Bike {
 	public int xPosition;
 	public int yPosition;
-	public int[][] grid;
+	public int[][] gridArray;
 	public int player;
     private final int DELAY_IN_MILLS = 100;
     public boolean gameState;
+    private Grid grid;
 
-	public Bike(int _xPosition, int _yPosition, int[][] _grid, int _player){
+	public Bike(int _xPosition, int _yPosition, int[][] _gridArray, int _player, Grid _grid){
 		xPosition = _xPosition;
 		yPosition = _yPosition;
-		grid = _grid;
+		gridArray = _gridArray;
 		player = _player;
 		gameState = true;
+		grid = _grid;
 	}
 	
 	/*
@@ -53,11 +55,12 @@ public class Bike {
 
 	public void turnWest(){
 		while(true){
-			if(grid[xPosition-1][yPosition] != 0){
+			if(gridArray[xPosition-1][yPosition] != 0){
 				gameState = false;
 			}
-			grid[xPosition-1][yPosition] = player;
+			gridArray[xPosition-1][yPosition] = player;
 			xPosition = xPosition - 1;
+			grid.repaint();
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
 			}
@@ -69,11 +72,12 @@ public class Bike {
 
 	public void turnEast(){
 		while(true){
-			if(grid[xPosition+1][yPosition] != 0){
+			if(gridArray[xPosition+1][yPosition] != 0){
 				gameState = false;
 			}
-			grid[xPosition+1][yPosition] = player;
+			gridArray[xPosition+1][yPosition] = player;
 			xPosition = xPosition + 1;
+			grid.repaint();
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
 			}
@@ -85,11 +89,12 @@ public class Bike {
 
 	public void turnSouth(){
 		while(true){
-			if(grid[xPosition][yPosition+1] != 0){
+			if(gridArray[xPosition][yPosition+1] != 0){
 				gameState = false;
 			}
-			grid[xPosition][yPosition+1] = player;
+			gridArray[xPosition][yPosition+1] = player;
 			yPosition = yPosition + 1;
+			grid.repaint();
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
 			}
@@ -101,11 +106,12 @@ public class Bike {
 
 	public void turnNorth(){
 		while(true){
-			if(grid[xPosition][yPosition-1] != 0){
+			if(gridArray[xPosition][yPosition-1] != 0){
 				gameState = false;
 			}
-			grid[xPosition][yPosition-1] = player;
+			gridArray[xPosition][yPosition-1] = player;
 			yPosition = yPosition - 1;
+			grid.repaint();
 			try{
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
 			}
