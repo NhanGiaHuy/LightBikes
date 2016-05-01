@@ -43,15 +43,23 @@ public class LightBikes extends JFrame {
     private JMenuItem jmiAbout;
     private Grid gameGrid;
 
+    /**
+     * Starts the game
+     * @param args Nothing
+     */
     public static void main(String[] args){
         //Collect initial settings
         new LightBikes();//possibly send through size of game grid
     }
 
+    /**
+     * Builds the GUI
+     * Starts game logic classes
+     */
     public LightBikes(){
         //Connect to server/start game
 
-        //Add JMenu
+        //Add JMenu bar
         JMenuBar menuBar = new JMenuBar();
             JMenu jmFile = new JMenu("File");
                 jmiConnect = new JMenuItem("Connect");
@@ -85,9 +93,8 @@ public class LightBikes extends JFrame {
 
                 Object choice = ae.getSource();
 
-                if(choice == jmiConnect){
-                    chatClient.connect();
-                    //JUSTIN - PASS THROUGH HOST NAME
+                if(choice == jmiConnect){//Connect to server
+                    chatClient.connect();//Chat server connection
                 }else if(choice == jmiExit){
                     System.exit(0);
                 }else if(choice == jmiAbout){
@@ -100,7 +107,6 @@ public class LightBikes extends JFrame {
         jmiExit.addActionListener(menuListener);
         jmiAbout.addActionListener(menuListener);
 
-        //Add scoreboard to west
         //Add game board to center
         //Controller cntr = new Controller(new Bike(5, 5));//This is for testing to see if the key lsitener works
 
@@ -108,7 +114,7 @@ public class LightBikes extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Light Bikes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //setResizable(false);
+        setResizable(false);
         setVisible(true);
         gameGrid.start();
     }
