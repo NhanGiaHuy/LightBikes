@@ -32,10 +32,11 @@ import sun.net.www.content.text.plain;
 public class Bike {
 	public int xPosition;
 	public int yPosition;
-	public Grid grid;
+	public int[][] grid;
 	public int player;
+    private final int DELAY_IN_MILLS = 100;
 	
-	public Bike(int _xPosition, int _yPosition, Grid _grid, int _player){
+	public Bike(int _xPosition, int _yPosition, int[][] _grid, int _player){
 		xPosition = _xPosition;
 		yPosition = _yPosition;
 		grid = _grid;
