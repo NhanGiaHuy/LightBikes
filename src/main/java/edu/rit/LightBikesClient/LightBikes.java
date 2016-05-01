@@ -77,7 +77,7 @@ public class LightBikes extends JFrame {
         JPanel chatFrame = new JPanel();
         JTextArea chat = new JTextArea(25,60);
         JTextField msg = new JTextField(25);
-        ChatClient chatClient = new ChatClient(chat, msg);
+        ChatClient chatClient = new ChatClient("UsernameThatNeedsToBeHandled", chat, msg);
 
         add(chatFrame, BorderLayout.EAST);
         chatFrame.add(chat);
