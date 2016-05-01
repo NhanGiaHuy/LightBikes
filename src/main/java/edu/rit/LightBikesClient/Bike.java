@@ -34,12 +34,14 @@ public class Bike {
 	public int[][] grid;
 	public int player;
     private final int DELAY_IN_MILLS = 100;
+    public boolean gameState;
 
 	public Bike(int _xPosition, int _yPosition, int[][] _grid, int _player){
 		xPosition = _xPosition;
 		yPosition = _yPosition;
 		grid = _grid;
 		player = _player;
+		gameState = true;
 	}
 	
 	/*
@@ -51,6 +53,9 @@ public class Bike {
 
 	public void turnWest(){
 		while(true){
+			if(grid[xPosition-1][yPosition] != 0){
+				gameState = false;
+			}
 			grid[xPosition-1][yPosition] = player;
 			xPosition = xPosition - 1;
 			try{
@@ -64,6 +69,9 @@ public class Bike {
 
 	public void turnEast(){
 		while(true){
+			if(grid[xPosition+1][yPosition] != 0){
+				gameState = false;
+			}
 			grid[xPosition+1][yPosition] = player;
 			xPosition = xPosition + 1;
 			try{
@@ -77,6 +85,9 @@ public class Bike {
 
 	public void turnSouth(){
 		while(true){
+			if(grid[xPosition][yPosition+1] != 0){
+				gameState = false;
+			}
 			grid[xPosition][yPosition+1] = player;
 			yPosition = yPosition + 1;
 			try{
@@ -90,6 +101,9 @@ public class Bike {
 
 	public void turnNorth(){
 		while(true){
+			if(grid[xPosition][yPosition-1] != 0){
+				gameState = false;
+			}
 			grid[xPosition][yPosition-1] = player;
 			yPosition = yPosition - 1;
 			try{
@@ -99,6 +113,10 @@ public class Bike {
 				ie.printStackTrace();
 			}
 		}
+	}
+	
+	public boolean getGameState(){
+		return gameState;
 	}
 
 }
