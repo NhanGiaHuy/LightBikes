@@ -41,6 +41,7 @@ public class Bike {
 		xPosition = _xPosition;
 		yPosition = _yPosition;
 		gridArray = _gridArray;
+		gridArray[xPosition][yPosition] = player;
 		player = _player;
 		gameState = true;
 		grid = _grid;
