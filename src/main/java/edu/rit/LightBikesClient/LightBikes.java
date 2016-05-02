@@ -94,7 +94,11 @@ public class LightBikes extends JFrame {
                 Object choice = ae.getSource();
 
                 if(choice == jmiConnect){//Connect to server
-                    chatClient.connect();//Chat server connection
+                    if (chatClient.connect()) { //Chat server connection
+                        System.out.println("Chat connection successful.");
+                    } else {
+                        System.out.println("Chat connection unsuccessful.");
+                    }
                 }else if(choice == jmiExit){
                     System.exit(0);
                 }else if(choice == jmiAbout){
