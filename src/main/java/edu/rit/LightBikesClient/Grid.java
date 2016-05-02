@@ -53,10 +53,10 @@ public class Grid extends JPanel {
             }
         }
         
-        Bike bike1 = new Bike(25, 25, grid, 1, Grid);
-        Bike bike2 = new Bike(75, 25, grid, 2, Grid);
-        Bike bike3 = new Bike(25, 75, grid, 3, Grid);
-        Bike bike4 = new Bike(75, 75, grid, 4, Grid);
+        Bike bike1 = new Bike(25, 25, grid, 1, this);
+        Bike bike2 = new Bike(75, 25, grid, 2, this);
+        Bike bike3 = new Bike(25, 75, grid, 3, this);
+        Bike bike4 = new Bike(75, 75, grid, 4, this);
         Controller c1 = new Controller(bike1);
         Controller c2 = new Controller(bike2);
         Controller c3 = new Controller(bike3);
