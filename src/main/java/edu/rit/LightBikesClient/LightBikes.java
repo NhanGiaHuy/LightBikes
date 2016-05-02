@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * LightBikes.java
@@ -115,9 +117,11 @@ public class LightBikes extends JFrame {
         jmiExit.addActionListener(menuListener);
         jmiAbout.addActionListener(menuListener);
 
+        addKeyListener(new Controller());
+        setFocusable(true);
+
         //Add game board to center
         //Controller cntr = new Controller(new Bike(5, 5));//This is for testing to see if the key lsitener works
-
         pack();
         setLocationRelativeTo(null);
         setTitle("Light Bikes");
