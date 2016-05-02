@@ -44,7 +44,7 @@ public class LightBikes extends JFrame {
     private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
     private Grid gameGrid;
-    private String username;
+    //private String username;
 
     /**
      * Starts the game
