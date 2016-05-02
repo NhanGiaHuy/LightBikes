@@ -42,6 +42,11 @@ public class Grid extends JPanel {
     private final Color PLAYER2 = Color.green;
     private final Color PLAYER3 = Color.blue;
     private final Color PLAYER4 = Color.blue;
+    
+    private Bike bike1;
+    private Bike bike2;
+    private Bike bike3;
+    private Bike bike4;
 
     public Grid() {
         setPreferredSize(new Dimension(WIDTH + 1, HEIGHT + 1));//Plus one to assure the edge line is shown
@@ -53,10 +58,10 @@ public class Grid extends JPanel {
             }
         }
         
-        Bike bike1 = new Bike(25, 25, grid, 1, this);
-        Bike bike2 = new Bike(75, 25, grid, 2, this);
-        Bike bike3 = new Bike(25, 75, grid, 3, this);
-        Bike bike4 = new Bike(75, 75, grid, 4, this);
+        bike1 = new Bike(25, 25, grid, 1, this);
+        bike2 = new Bike(75, 25, grid, 2, this);
+        bike3 = new Bike(25, 75, grid, 3, this);
+        bike4 = new Bike(75, 75, grid, 4, this);
         Controller c1 = new Controller(bike1);
         Controller c2 = new Controller(bike2);
         Controller c3 = new Controller(bike3);
