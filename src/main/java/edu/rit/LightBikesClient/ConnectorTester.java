@@ -1,4 +1,4 @@
-
+package edu.rit.LightBikesClient;
 
 public class ConnectorTester {
 
