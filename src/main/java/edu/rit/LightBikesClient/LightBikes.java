@@ -42,6 +42,7 @@ public class LightBikes extends JFrame {
     private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
     private Grid gameGrid;
+    private String username;
 
     /**
      * Starts the game
@@ -57,7 +58,7 @@ public class LightBikes extends JFrame {
      * Starts game logic classes
      */
     public LightBikes(){
-        //Connect to server/start game
+        //Prompt for username
 
         //Add JMenu bar
         JMenuBar menuBar = new JMenuBar();
@@ -77,9 +78,10 @@ public class LightBikes extends JFrame {
         JPanel chatFrame = new JPanel(new BorderLayout());
         JTextArea chat = new JTextArea(25,60);
         JTextField msg = new JTextField(25);
-        ChatClient chatClient = new ChatClient("UsernameThatNeedsToBeHandled", chat, msg);
+        JTextField usernameField = new JTextField("YourUsername", 25);
 
         add(chatFrame, BorderLayout.EAST);
+        chatFrame.add(usernameField, BorderLayout.NORTH);
         chatFrame.add(chat, BorderLayout.CENTER);
         chatFrame.add(msg, BorderLayout.SOUTH);
         
@@ -94,6 +96,8 @@ public class LightBikes extends JFrame {
                 Object choice = ae.getSource();
 
                 if(choice == jmiConnect){//Connect to server
+                    ChatClient chatClient = new ChatClient(username, chat, msg);
+
                     if (chatClient.connect()) { //Chat server connection
                         System.out.println("Chat connection successful.");
                     } else {
