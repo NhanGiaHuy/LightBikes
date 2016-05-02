@@ -9,8 +9,6 @@
 package edu.rit.LightBikesClient;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -38,21 +36,28 @@ public class ChatClient {
     private JTextField newMsg;
     private PrintWriter pw;
     private Socket sock;
+    private String username;
 
     /**
      *
      */
-    public ChatClient(JTextArea chat, JTextField newMsg) {
+    public ChatClient(String username, JTextArea chat, JTextField newMsg) {
+        this.username = username;
         this.chat = chat;
         this.newMsg = newMsg;
 
         newMsg.addActionListener(actionEvent -> {
-            send(newMsg.getText());
+            send(username + ": " + newMsg.getText());
             newMsg.setText("");
         });
     }
 
-    public void connect() {
+    /**
+     * Initial connection to the chat server. This command is to be called by the menu bar item to initialize the
+     * chat server connection. This method helps ensure that the client successfully connects to the chat server even
+     * when it may not be running.
+     */
+    public boolean connect() {
         try {
             sock = new Socket("localhost", 6667);
             br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
@@ -62,13 +67,21 @@ public class ChatClient {
 
             ReceiveMessages recv = new ReceiveMessages();
             recv.start();
+
+            return true;
         } catch (UnknownHostException e) {
             chat.append("Cannot find server with specified IP and/or port. Is a firewall running?\n");
+            return false;
         } catch (IOException e) {
             chat.append("Unable to connect. Is the server running?\n");
+            return false;
         }
     }
 
+    /**
+     *
+     * @param msg
+     */
     public void send(String msg) {
         pw.println(msg);
         pw.flush();

@@ -137,7 +137,7 @@ public class ChatServer {
          *
          */
         public void run() {
-            while (!msg.equalsIgnoreCase("s7XUH94y")) {
+            while (!msg.equalsIgnoreCase(null)) {
                 try {
 
                     // Initialize attributes
