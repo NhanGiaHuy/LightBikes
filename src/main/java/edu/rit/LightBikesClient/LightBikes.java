@@ -74,14 +74,14 @@ public class LightBikes extends JFrame {
         add(menuBar, BorderLayout.NORTH);
 
         //Add chat window to east
-        JPanel chatFrame = new JPanel();
+        JPanel chatFrame = new JPanel(new BorderLayout());
         JTextArea chat = new JTextArea(25,60);
         JTextField msg = new JTextField(25);
         ChatClient chatClient = new ChatClient("UsernameThatNeedsToBeHandled", chat, msg);
 
         add(chatFrame, BorderLayout.EAST);
-        chatFrame.add(chat);
-        chatFrame.add(msg);
+        chatFrame.add(chat, BorderLayout.CENTER);
+        chatFrame.add(msg, BorderLayout.SOUTH);
         
         gameGrid = new Grid();
         add(gameGrid, BorderLayout.CENTER);
