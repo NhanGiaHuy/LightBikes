@@ -10,6 +10,7 @@ package edu.rit.LightBikesClient;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Controller.java
@@ -26,7 +27,7 @@ import java.awt.event.KeyEvent;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class Controller extends KeyAdapter {
+public class Controller implements KeyListener {
 
 	public Bike bike;
 	public Controller(Bike _bike){
@@ -48,5 +49,13 @@ public class Controller extends KeyAdapter {
 		else if(choice.equals(KeyEvent.VK_DOWN)) {
 			bike.turnSouth();
 		}	
+	}
+	
+	public void keyReleased(KeyEvent ke){
+		
+	}
+	
+	public void keyTyped(KeyEvent ke){
+		
 	}
 }
