@@ -43,6 +43,7 @@ public class Grid extends JPanel {
     
     private Bike bike1;
     private Bike bike2;
+    private Bike controlledBike;
     
     private boolean bike1GameState;
     private boolean bike2GameState;
@@ -59,9 +60,36 @@ public class Grid extends JPanel {
         
         bike1 = new Bike(25, 25, grid, 1, this);
         bike2 = new Bike(75, 25, grid, 2, this);
+
+        int user = 1;
+
+        if(user == 1) {
+            controlledBike = bike1;
+        }else if(user == 2){
+            controlledBike = bike2;
+        }else{
+            System.out.println("user number error");
+        }
+    }
+
+    public void turnNorth() {
+        controlledBike.turnNorth();
+    }
+
+    public void turnEast() {
+        controlledBike.turnEast();
+    }
+
+    public void turnSouth() {
+        controlledBike.turnSouth();
+    }
+
+    public void turnWest() {
+        controlledBike.turnWest();
     }
 
     public void paintComponent(Graphics g) {
+        System.out.println("repaint");
         super.paintComponent(g);
         //EDGES
         g.drawLine(0, 0, 0, HEIGHT);//left side

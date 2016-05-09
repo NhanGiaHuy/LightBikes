@@ -128,19 +128,19 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT){
             System.out.println("Right");
-            //bike.turnEast();
+            gameGrid.turnEast();
         }
         else if(ke.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("Left");
-            //bike.turnWest();
+            gameGrid.turnWest();
         }
         else if(ke.getKeyCode() == KeyEvent.VK_UP) {
             System.out.println("Up");
-            //bike.turnNorth();
+            gameGrid.turnNorth();
         }
         else if(ke.getKeyCode() == KeyEvent.VK_DOWN) {
             System.out.println("Down");
-            //bike.turnSouth();
+            gameGrid.turnSouth();
         }
     }
 
@@ -169,7 +169,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("entered");
+        //System.out.println("entered");
         gameGrid.requestFocus();
     }
 

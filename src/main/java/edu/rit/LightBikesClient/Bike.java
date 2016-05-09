@@ -62,8 +62,10 @@ public class Bike {
 			}
 			gridArray[xPosition-1][yPosition] = player;
 			xPosition = xPosition - 1;
-			grid.repaint();
+
 			try{
+                grid.repaint();
+                System.out.println("repaint test");
 				TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
 			}
 			catch(InterruptedException ie){
