@@ -56,7 +56,7 @@ public class Bike {
 	 */
 
 	public void turnWest(){
-		while(true){
+		while(gameState == true){
 			if(gridArray[xPosition-1][yPosition] != 0){
 				gameState = false;
 			}
@@ -73,7 +73,7 @@ public class Bike {
 	}
 
 	public void turnEast(){
-		while(true){
+		while(gameState == true){
 			if(gridArray[xPosition+1][yPosition] != 0){
 				gameState = false;
 			}
@@ -90,7 +90,7 @@ public class Bike {
 	}
 
 	public void turnSouth(){
-		while(true){
+		while(gameState == true){
 			if(gridArray[xPosition][yPosition+1] != 0){
 				gameState = false;
 			}
@@ -107,7 +107,7 @@ public class Bike {
 	}
 
 	public void turnNorth(){
-		while(true){
+		while(gameState == true){
 			if(gridArray[xPosition][yPosition-1] != 0){
 				gameState = false;
 			}
@@ -126,5 +126,4 @@ public class Bike {
 	public boolean getGameState(){
 		return gameState;
 	}
-
 }
