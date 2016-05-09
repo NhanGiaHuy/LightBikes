@@ -40,13 +40,12 @@ public class Grid extends JPanel {
     //Colors of lines (maybe set as a user setting?)
     private final Color PLAYER1 = Color.blue;
     private final Color PLAYER2 = Color.green;
-    private final Color PLAYER3 = Color.blue;
-    private final Color PLAYER4 = Color.blue;
     
     private Bike bike1;
     private Bike bike2;
-    private Bike bike3;
-    private Bike bike4;
+    
+    private boolean bike1GameState;
+    private boolean bike2GameState;
 
     public Grid() {
         setPreferredSize(new Dimension(WIDTH + 1, HEIGHT + 1));//Plus one to assure the edge line is shown
@@ -60,12 +59,8 @@ public class Grid extends JPanel {
         
         bike1 = new Bike(25, 25, grid, 1, this);
         bike2 = new Bike(75, 25, grid, 2, this);
-        bike3 = new Bike(25, 75, grid, 3, this);
-        bike4 = new Bike(75, 75, grid, 4, this);
         Controller c1 = new Controller(bike1);
         Controller c2 = new Controller(bike2);
-        Controller c3 = new Controller(bike3);
-        Controller c4 = new Controller(bike4);
     }
 
     public void paintComponent(Graphics g) {
@@ -84,65 +79,23 @@ public class Grid extends JPanel {
                         g.setColor(PLAYER1);
                     } else if (grid[x][y] == 2) {
                         g.setColor(PLAYER2);
-                    } else if (grid[x][y] == 3) {
-                        g.setColor(PLAYER3);
-                    } else if (grid[x][y] == 4) {
-                        g.setColor(PLAYER4);
                     }
                     g.fillRect(x * 5, y * 5, 5, 5);
                 }
             }
         }
+        
+        bike1GameState = bike1.getGameState();
+        bike2GameState = bike2.getGameState();
+        
+        if(bike1GameState == false){
+        	
+        }
+        if(bike2GameState == false){
+        	
+        }
     }
 
     public void start() {
-        try {
-            //wait a few seconds
-            Thread.sleep(3000);
-            //go down 7
-            grid[25][51] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][52] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][53] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][54] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][55] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][56] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[25][57] = 1;
-            repaint();
-            //go right 7
-            grid[26][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[27][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[28][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[29][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[30][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[31][57] = 1;
-            repaint();
-            Thread.sleep(DELAY_IN_MILLS);
-            grid[32][57] = 1;
-            repaint();
-        } catch (Exception e) {
-
-        }
     }
 }
