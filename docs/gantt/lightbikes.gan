@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="67" order="0"/>
         <field id="tpd4" name="Begin date" width="16" order="1"/>
         <field id="tpd5" name="End date" width="16" order="2"/>
-        <timeline><![CDATA[62,77,41,91,89,7,64,94,39,5,10,75,2,87,36,69,4,83,28,16]]></timeline>
+        <timeline><![CDATA[62,77,41,91,89,7,64,94,39,5,10,75,2,87,36,101,69,4,83,28,16,96]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="50" order="0"/>
@@ -55,6 +55,8 @@
         <task id="89" name="Packaging client and server JARs" color="#8cb6ce" meeting="false" start="2016-05-09" duration="3" complete="0" priority="4" expand="true"/>
         <task id="91" name="Apply JavaDocs comments to project" color="#8cb6ce" meeting="false" start="2016-05-12" duration="1" complete="0" priority="0" expand="true"/>
         <task id="94" name="Create a server GUI" color="#8cb6ce" meeting="false" start="2016-05-16" duration="4" complete="0" priority="3" expand="true"/>
+        <task id="96" name="Make KeyListeners work" color="#8cb6ce" meeting="false" start="2016-05-09" duration="3" complete="0" priority="4" expand="true"/>
+        <task id="101" name="Integrate network with game logic" color="#8cb6ce" meeting="false" start="2016-05-09" duration="3" complete="0" priority="4" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Justin W. Flory" function="4" contacts="jflory7@gmail.com" phone="770-527-8614"/>
@@ -78,15 +80,18 @@
         <allocation task-id="75" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="77" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="94" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="96" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="41" resource-id="2" function="3" responsible="true" load="100.0"/>
         <allocation task-id="39" resource-id="2" function="3" responsible="true" load="100.0"/>
         <allocation task-id="69" resource-id="2" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="101" resource-id="2" function="3" responsible="true" load="100.0"/>
         <allocation task-id="10" resource-id="3" function="2" responsible="false" load="100.0"/>
         <allocation task-id="36" resource-id="3" function="2" responsible="true" load="100.0"/>
         <allocation task-id="41" resource-id="3" function="2" responsible="false" load="100.0"/>
         <allocation task-id="62" resource-id="3" function="2" responsible="true" load="100.0"/>
         <allocation task-id="64" resource-id="3" function="2" responsible="true" load="100.0"/>
         <allocation task-id="69" resource-id="3" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="101" resource-id="3" function="2" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
