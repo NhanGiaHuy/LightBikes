@@ -30,24 +30,28 @@ import java.awt.event.KeyListener;
 public class Controller implements KeyListener {
 
 	public Bike bike;
-	public Controller(Bike _bike){
-		bike = _bike;
+	public Controller(){//Bike _bike){
+		//bike = _bike;
 	}
 	
 	public void keyPressed(KeyEvent ke){
-		Object choice = ke.getSource();
+		int choice = ke.getKeyCode();
 		
-		if(choice.equals(KeyEvent.VK_RIGHT)){
-			bike.turnEast();
+		if(choice == KeyEvent.VK_RIGHT){
+			//bike.turnEast();
+			System.out.println("right");
 		}
-		else if(choice.equals(KeyEvent.VK_LEFT)) {
-			bike.turnWest();
+		else if(choice == KeyEvent.VK_LEFT){
+			//bike.turnWest();
+            System.out.println("left");
 		}
-		else if(choice.equals(KeyEvent.VK_UP)) {
-			bike.turnNorth();
+		else if(choice == KeyEvent.VK_UP){
+			//bike.turnNorth();
+            System.out.println("up");
 		}
-		else if(choice.equals(KeyEvent.VK_DOWN)) {
-			bike.turnSouth();
+		else if(choice == KeyEvent.VK_DOWN){
+			//bike.turnSouth();
+            System.out.println("down");
 		}	
 	}
 	
