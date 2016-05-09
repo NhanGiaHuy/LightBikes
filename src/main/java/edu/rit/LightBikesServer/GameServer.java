@@ -8,6 +8,14 @@
 
 package edu.rit.LightBikesServer;
 
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.net.*;
 import java.util.Vector;
@@ -29,13 +37,21 @@ import java.util.Scanner;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-
-public class GameServer {
+public class GameServer extends Application {
     private static final int PORT = 8888;
     private Vector<Lobby> lobbies = new Vector<Lobby>();
 
+    /*
+    @FXML
+    private TextArea test;
+    @FXML
+    private TextArea errorText;
+    @FXML
+    private TextArea player2Text;
+*/
 
     public static void main (String[] args) {
+        launch(args);
         new GameServer();
     }
 
@@ -54,5 +70,13 @@ public class GameServer {
         }
         catch (IOException ioe) {
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("ServerGUI.fxml"));
+        primaryStage.setTitle("Light Bikes Server");
+        primaryStage.setScene(new Scene(root, 600, 450));
+        primaryStage.show();
     }
 }
