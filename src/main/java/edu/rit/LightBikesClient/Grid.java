@@ -59,10 +59,6 @@ public class Grid extends JPanel {
         
         bike1 = new Bike(25, 25, grid, 1, this);
         bike2 = new Bike(75, 25, grid, 2, this);
-
-        Controller c1 = new Controller(bike1);
-        Controller c2 = new Controller(bike2);
-
     }
 
     public void paintComponent(Graphics g) {

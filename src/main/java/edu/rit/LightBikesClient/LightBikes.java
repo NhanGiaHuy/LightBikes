@@ -10,8 +10,7 @@ package edu.rit.LightBikesClient;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * LightBikes.java
@@ -35,7 +34,7 @@ import java.awt.event.ActionListener;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class LightBikes extends JFrame {
+public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     //These are test items, I'm not sure what we need here yet
     private JMenuItem jmiExit;
@@ -111,9 +110,6 @@ public class LightBikes extends JFrame {
         jmiExit.addActionListener(menuListener);
         jmiAbout.addActionListener(menuListener);
 
-        //Add game board to center
-        //Controller cntr = new Controller(new Bike(5, 5));//This is for testing to see if the key lsitener works
-
         pack();
         setLocationRelativeTo(null);
         setTitle("Light Bikes");
@@ -121,5 +117,64 @@ public class LightBikes extends JFrame {
         setResizable(false);
         setVisible(true);
         gameGrid.start();
+        gameGrid.setFocusable(true);
+        gameGrid.requestFocus();
+        gameGrid.addKeyListener(this);
+        gameGrid.addMouseListener(this);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke){
+
+        if(ke.getKeyCode() == KeyEvent.VK_RIGHT){
+            System.out.println("Right");
+            //bike.turnEast();
+        }
+        else if(ke.getKeyCode() == KeyEvent.VK_LEFT) {
+            System.out.println("Left");
+            //bike.turnWest();
+        }
+        else if(ke.getKeyCode() == KeyEvent.VK_UP) {
+            System.out.println("Up");
+            //bike.turnNorth();
+        }
+        else if(ke.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("Down");
+            //bike.turnSouth();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke){
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke){
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("entered");
+        gameGrid.requestFocus();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
