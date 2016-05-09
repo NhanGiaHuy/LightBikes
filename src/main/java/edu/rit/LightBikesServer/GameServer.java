@@ -56,11 +56,15 @@ public class GameServer extends Application {
                 s = ss.accept();
                 System.out.println("Caught one - " + s);
                 //Player temp = new Player(s);
-                new Thread(new Player(s, lobbies)).start();
+                new Thread(new Player(s, this)).start();
             }
         }
         catch (IOException ioe) {
         }
+    }
+
+    public Vector<Lobby> getLobbies() {
+        return lobbies;
     }
 
     @Override

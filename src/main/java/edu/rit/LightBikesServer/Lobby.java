@@ -33,7 +33,7 @@ public class Lobby {
     private Vector<Player> players = new Vector<Player>();
 
     public Lobby() {
-
+        lobbyName = "";
     }
 
     public Lobby(String lobbyName) {

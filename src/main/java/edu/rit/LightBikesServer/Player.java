@@ -34,7 +34,7 @@ import java.util.Scanner;
 
      private String username;
      private Lobby lobby;
-     private Vector<Lobby> lobbies;
+     private GameServer gameServer;
      private PrintWriter out;
      private Socket s;
 
@@ -43,9 +43,9 @@ import java.util.Scanner;
       * @param  s The socket the client is connected to
       * @return   Nothing
       */
-     public Player(Socket s, Vector<Lobby> lobbies) {
+     public Player(Socket s, GameServer gameServer) {
          this.s = s;
-         this.lobbies = lobbies;
+         this.gameServer = gameServer;
      }
 
      /**
@@ -109,25 +109,26 @@ import java.util.Scanner;
              case "set-lobby":
                  setLobby(value);
                  break;
+                 
              case "set-username":
                  setUsername(value);
                  break;
+
              case "set-direction":
                  pushToAll("rsp-direction", value, true);
                  break;
+
              case "set-location":
                  pushToAll("rsp-location", value, true);
+                 break;
 
              case "get-game-master":
                  push("rsp-game-master", lobby.getGameMaster());
                  break;
 
-
              case "cmd-game-start":
                  startGame();
                  break;
-
-
          }
      }
 
