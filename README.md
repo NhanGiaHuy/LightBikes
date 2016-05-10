@@ -1,15 +1,8 @@
-# RIT-ISTE121-2155-Project
+# LightBikes
 
-## TRON Light Bikes
+## About
 
-Final project for ISTE-121, 2155.
-
-
-### About
-
-This repository is the final project for the ISTE-121 course at the Rochester Institute of Technology. As part of the
-final project, we were tasked to design a game that incorporates the core elements of the things we learned this
-semester. The team members of this project are:
+This repository is the final project for the ISTE-121 course at the Rochester Institute of Technology. As part of the final project, we were tasked to design a game that incorporates the core elements of the things we learned this semester. The team members of this project are:
 
 * Tim Endersby
 * Felice Aprile
