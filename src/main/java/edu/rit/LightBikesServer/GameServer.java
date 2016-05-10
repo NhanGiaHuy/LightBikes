@@ -39,7 +39,9 @@ import java.util.Scanner;
  */
 public class GameServer extends Application {
     private static final int PORT = 8888;
-    private Vector<Lobby> lobbies = new Vector<Lobby>();
+    private static final int MAX_CLIENTS = 2;
+    private boolean acceptingPlayers = true;
+    private Vector<Player> players = new Vector<Player>();
 
     public static void main (String[] args) {
         launch(args);
@@ -52,19 +54,44 @@ public class GameServer extends Application {
         try {
             ss = new ServerSocket(PORT);
             System.out.println("Waiting for client connections...");
-            while (true) {
+            while (acceptingPlayers) {
                 s = ss.accept();
                 System.out.println("Caught one - " + s);
-                //Player temp = new Player(s);
-                new Thread(new Player(s, this)).start();
+                Player temp = new Player(s, this);
+                players.add(temp);
+                new Thread(new Player(s, players.size(),this)).start();
+                acceptingPlayers = players.size() < MAX_CLIENTS;
             }
+            startGame();
         }
         catch (IOException ioe) {
         }
     }
 
-    public Vector<Lobby> getLobbies() {
-        return lobbies;
+    public void pushToAll(String commandString) {
+        for (Player player : players) {
+            player.push(commandString);
+        }
+    }
+
+    public void pushToPlayer(int playerID, String commandString) {
+        players.get(player-1).push(commandString);
+    }
+
+    public void pushToOthers(int playerID, String commandString) {
+        for (Player player : players) {
+            if (player.getPlayerID() != playerID) {
+                player.push(commandString);
+            }
+        }
+    }
+
+    private String makeCommandString(String command, String value) {
+        return command + ":" + value + ";";
+    }
+
+    private void startGame() {
+        pushToAll(makeCommandString("rsp-game-start", "true"));
     }
 
     @Override

@@ -10,8 +10,6 @@ package edu.rit.LightBikesClient;
 
 import java.io.*;
 import java.net.*;
-import java.util.Vector;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -69,14 +67,17 @@ public class NetworkConnector {
         catch (Exception e) {
             e.printStackTrace();
         }
-        send(makeCommandString("set-username", username));
+        sendUsername;
     }
 
-
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+    /**
+     * Change this client's username on the server
+     * @param username The username to send.
+     */
+    public void sendUsername(String username) {
+        sendCommand("set-username", username);
     }
+
 
     /**
     * Send the current x,y position of the bike.
@@ -88,10 +89,10 @@ public class NetworkConnector {
     }
 
     /**
-     * Tell the server that the user hit a wall or the other player.
+     * Tell the server that the user died
      */
     public void notifyDeath() {
-        sendCommand("dead","true");
+        sendCommand("set-dead","true");
     }
 
     /**
@@ -99,7 +100,7 @@ public class NetworkConnector {
     * sendCommand() instead as it will format the string correctly for you.
     * @param commandString The command string to send.
     */
-    public void send(String commandString) {
+    private void send(String commandString) {
         out.println(commandString);
     }
 
@@ -113,11 +114,22 @@ public class NetworkConnector {
         send(makeCommandString(command, value));
     }
 
+    /**
+    * Creates and sends a command string to server.
+    * @param  command  The command to send
+    * @param  value    The value to send
+    */
     public void sendCommand(String command, int value) {
         send(makeCommandString(command, "" + value));
     }
 
-    public String makeCommandString(String command, String value) {
+    /**
+     * Generates a properly formatted command string to be sent to the server
+     * @param   command The command to be contained in the command string
+     * @param   value   The value to be contained in the command string
+     * @return  Generated command string
+     */
+    private String makeCommandString(String command, String value) {
         return command + ":" + value + ";";
     }
 
@@ -131,6 +143,10 @@ public class NetworkConnector {
         String value = temp[1];
 
         switch (command) {
+            case "resp-user-id":
+            setUserID(value);
+            break;
+
             case "resp-game-start":
             startGame(value);
             break;
@@ -141,16 +157,16 @@ public class NetworkConnector {
 
             case "resp-update-location":
             updateLocation(value);
+            break;
         }
     }
 
     // Methods to process different commands from the server
 
     /**
-    * Starts the game within the Grid object
+    * Starts the game within the Grid object. UserID must already set
     */
     private void startGame(String value) {
-        this.userID = Integer.parseInt(value);
         grid.startGame(userID);
     }
 
@@ -169,6 +185,10 @@ public class NetworkConnector {
     private void updateLocation(String value) {
         String[] pair = value.split(",");
         grid.getServerBike().setLocation(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+    }
+
+    private void setUserID(String value) {
+        userID = Integer.parseInt(value);
     }
 
 
