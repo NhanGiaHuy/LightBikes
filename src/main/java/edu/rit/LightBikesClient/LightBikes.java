@@ -9,6 +9,9 @@
 package edu.rit.LightBikesClient;
 
 import javax.swing.*;
+
+import com.sun.org.apache.xpath.internal.operations.String;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -41,6 +44,8 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
     private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
     private Grid gameGrid;
+    private String hostname;
+    private String username;
 
     /**
      * Starts the game
@@ -117,6 +122,9 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         setResizable(false);
         setVisible(true);
         gameGrid.start();
+        hostname = (String)JOptionPane.showInputDialog("What is your hostname?");
+        username = (String)JOptionPane.showInputDialog("What is your username?");
+        gameGrid.connect(hostname, username;
         gameGrid.setFocusable(true);
         gameGrid.requestFocus();
         gameGrid.addKeyListener(this);
