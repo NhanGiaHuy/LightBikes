@@ -10,8 +10,6 @@ package edu.rit.LightBikesClient;
 
 import javax.swing.*;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -44,8 +42,8 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
     private JMenuItem jmiConnect;
     private JMenuItem jmiAbout;
     private Grid gameGrid;
-    private java.lang.String hostname;
-    private java.lang.String username;
+    private String hostname;
+    private String username;
 
     /**
      * Starts the game
@@ -86,10 +84,10 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         add(chatFrame, BorderLayout.EAST);
         chatFrame.add(chat, BorderLayout.CENTER);
         chatFrame.add(msg, BorderLayout.SOUTH);
-        
+
         gameGrid = new Grid();
         add(gameGrid, BorderLayout.CENTER);
-       
+
 
         //Action listener for Menu items
         ActionListener menuListener = new ActionListener() {
