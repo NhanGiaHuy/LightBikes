@@ -44,6 +44,7 @@ public class Grid extends JPanel {
     private Bike bike1;
     private Bike bike2;
     private Bike controlledBike;
+    private Bike serverBike;
 
     private boolean bike1GameState;
     private boolean bike2GameState;
@@ -62,7 +63,7 @@ public class Grid extends JPanel {
     }
 
     /**
-     * Adds bikes to grid and lets game begin. Called by NetworkConnector
+     * Adds bikes to grid and lets game begin. (Used by NetworkConnector)
      * @param controlled Id of the bike this user is controlling
      */
     public void startGame(int controlled) {
@@ -71,16 +72,18 @@ public class Grid extends JPanel {
 
         if(controlled == 1) {
             controlledBike = bike1;
+            serverBike = bike2;
         }
         else {
             controlledBike = bike2;
+            serverBike = bike1;
         }
     }
 
     /**
-     * Initiates
-     * @param  [description]
-     * @param  [description]
+     * Initiates a connection to the Game Server
+     * @param  hostname The hostname or IPv4 address of the game server
+     * @param  username The username that this user would like to use
      */
     public void connect(String hostname, String username) {
         connector = new NetworkConnector(hostname, username, this);
@@ -100,6 +103,18 @@ public class Grid extends JPanel {
 
     public void turnWest() {
         controlledBike.turnWest();
+    }
+
+    /**
+     * Returns the other player's bike (Used by Network Connector).
+     * @return Bike object that this client is not controlling
+     */
+    public Bike getServerBike() {
+        return serverBike;
+    }
+
+    public NetworkConnector getConnector() {
+        return connector;
     }
 
     public void paintComponent(Graphics g) {

@@ -84,12 +84,12 @@ public class NetworkConnector {
     /**
      * Starts the game within the Grid object
      */
-    public void startGame() {
-        grid.startGame();
+    public void startGame(int controlled) {
+        grid.startGame(controlled);
     }
 
     public void setUserID(int userID) {
-        this.userID = userID
+        this.userID = userID;
     }
 
     /**
@@ -99,14 +99,6 @@ public class NetworkConnector {
      */
     public void sendLocation(int x, int y) {
         sendCommand("set-location", ("" + x + "," + y));
-    }
-
-    /**
-     * Register a change in direction of the bike. Likely accompanied with a sendLocation() command.
-     * @param direction The direction (See constants).
-     */
-    public void sendDirection(int direction) {
-        sendCommand("set-direction", direction);
     }
 
     /**
@@ -141,19 +133,16 @@ public class NetworkConnector {
 
         switch (command) {
             case "resp-user-id":
-                setUserID(value);
+                setUserID(Integer.parseInt(value));
                 break;
             case "resp-username-list":
                 setPlayers(value);
                 break;
-            case "resp-lobby-name":
-                lobbyName = value;
-
         }
     }
 
     private void setPlayers(String csvUsers) {
-        players = csvUsers.split(",");
+        otherPlayers = csvUsers.split(",");
     }
 
     class Listener implements Runnable {
@@ -177,7 +166,7 @@ public class NetworkConnector {
         }
 
         /**
-         * Don't call directly -- use thread.start()
+         * Don't call directly -- use threadObj.start()
          * Runs for the life of the connection, waiting to recieve messages
          */
         public void run() {

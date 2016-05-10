@@ -104,9 +104,6 @@ import java.util.Scanner;
          String value = temp[1];
 
          switch (command) {
-             case "set-lobby":
-                 setLobby(value);
-                 break;
 
              case "set-username":
                  setUsername(value);
@@ -130,26 +127,26 @@ import java.util.Scanner;
          }
      }
 
-     public void setLobby(String lobbyName) {
-         int lobbyNum = -1;
-         for (int i = 0, found = 0; i < lobbies.size() && found == 0; i++) {
-             if (lobbyName.equals(lobbies.get(i).getLobbyName())) {
-                 found = 1;
-                 lobbyNum = i;
-             }
-         }
-         if (lobbyNum >= 0) {
-             lobby = lobbies.get(lobbyNum);
-         }
-         else {
-             lobby = new Lobby(lobbyName);
-         }
-         lobby.addPlayer(this);
-     }
+//     public void setLobby(String lobbyName) {
+//         int lobbyNum = -1;
+//         for (int i = 0, found = 0; i < lobbies.size() && found == 0; i++) {
+//             if (lobbyName.equals(lobbies.get(i).getLobbyName())) {
+//                 found = 1;
+//                 lobbyNum = i;
+//             }
+//         }
+//         if (lobbyNum >= 0) {
+//             lobby = lobbies.get(lobbyNum);
+//         }
+//         else {
+//             lobby = new Lobby(lobbyName);
+//         }
+//         lobby.addPlayer(this);
+//     }
 
-     public String getLobby() {
-         return lobby.getLobbyName();
-     }
+//     public String getLobby() {
+//         return lobby.getLobbyName();
+//     }
 
      public void setUsername(String username) {
          this.username = username;

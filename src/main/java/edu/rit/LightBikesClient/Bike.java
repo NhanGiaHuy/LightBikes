@@ -40,9 +40,10 @@ public class Bike {
 	public int[][] gridArray;
 	public int player;
 	private int direction;
-	private final int DELAY_IN_MILLS = 100;
+	private static final int DELAY_IN_MILLS = 100;
 	public boolean gameState;
 	private Grid grid;
+	private NetworkConnector connector;
 
 	public Bike(int _xPosition, int _yPosition, int[][] _gridArray, int _player, int initialDirection, Grid _grid){
 		direction = initialDirection;
@@ -83,9 +84,23 @@ public class Bike {
 		return x > 0 && x < gridArray.length && y > 0 && y < gridArray[0].length && gridArray[x][y] != 0;
 	}
 
+	/**
+	 * Update the location of the bike
+	 */
 	public void updateLocation() {
 		gridArray[xPosition][yPosition] = player;
 		grid.repaint();
+	}
+
+	/**
+	 * Set the location of the bike manually (Used by Network Connector)
+	 * @param  x	The x value of the location
+	 * @param  y	The y value of the location
+	 */
+	public void setLocation(int x, int y) {
+		this.xPosition = x;
+		this.yPosition = y;
+		updateLocation();
 	}
 
 	public boolean getGameState(){
@@ -100,11 +115,20 @@ public class Bike {
 		return yPosition;
 	}
 
+	/**
+	 * Start the game (i.e. set this bike moving forward) (Used by NetworkConnector
+	 * when the server starts the game)
+	 */
+	public void startGame() {
+		new Thread(new Movement()).start();
+	}
+
 
 	class Movement implements Runnable {
 
 		@Override
 		public void run() {
+			NetworkConnector connector = grid.getConnector();
 			while (gameState) {
 				switch(direction) {
 
@@ -141,14 +165,15 @@ public class Bike {
 					break;
 				}
 
-				updateLocation();
+				// Send the server the bike's new location
 				connector.sendLocation(xPosition, yPosition);
 
+				// Show the new location on the grid
+				updateLocation();
+
+				// Take a break
 				try{
 					TimeUnit.MILLISECONDS.sleep(DELAY_IN_MILLS);
-				}
-				catch(ArrayIndexOutOfBounds aiob) {
-					aiob.printStackTrace();
 				}
 				catch(InterruptedException ie){
 					ie.printStackTrace();
