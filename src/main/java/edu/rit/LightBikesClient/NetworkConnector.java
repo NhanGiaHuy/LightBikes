@@ -40,20 +40,20 @@ public class NetworkConnector {
     private static final int PORT = 8888;
     private String hostname;
     private String username;
-    private String lobbyName;
-    private boolean gameMaster;
+    private int userID;
     private Socket s;
     private PrintWriter out;
-    private String[] players;
+    private String[] otherPlayers;
+    private Grid grid;
 
     /**
      * Creates a new connection to the server
      * @return Nothing
      */
-    public NetworkConnector(String hostname, String lobbyName, String username) {
+    public NetworkConnector(String hostname, String username, Grid grid) {
         this.username = username;
         this.hostname = hostname;
-        this.lobbyName = lobbyName;
+        this.grid = grid;
         connect();
     }
 
@@ -69,7 +69,7 @@ public class NetworkConnector {
         catch (Exception e) {
             e.printStackTrace();
         }
-        send(makeCommandString("set-lobby", lobbyName) + makeCommandString("set-username", username));
+        send(makeCommandString("set-username", username));
     }
 
     /**
@@ -82,20 +82,14 @@ public class NetworkConnector {
     }
 
     /**
-     * Check whether this user is the "game master".
-     * @return True if the user is the game master, false if otherwise.
-     */
-    public boolean isGameMaster() {
-        return gameMaster;
-    }
-
-    /**
-     * Sends a message to the server to lock the lobby and start the game
+     * Starts the game within the Grid object
      */
     public void startGame() {
-        if (gameMaster) {
-            sendCommand("game-start", "true");
-        }
+        grid.startGame();
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID
     }
 
     /**
@@ -146,8 +140,8 @@ public class NetworkConnector {
         String value = temp[1];
 
         switch (command) {
-            case "resp-game-master":
-                gameMaster = (value.equals(username));
+            case "resp-user-id":
+                setUserID(value);
                 break;
             case "resp-username-list":
                 setPlayers(value);

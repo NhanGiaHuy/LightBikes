@@ -94,8 +94,6 @@ import java.util.Scanner;
          lobby.pushToAll(makeCommandString(command, (username + "," + value)));
      }
 
-
-
      public String makeCommandString(String command, String value) {
          return command + ":" + value + ";";
      }
@@ -109,7 +107,7 @@ import java.util.Scanner;
              case "set-lobby":
                  setLobby(value);
                  break;
-                 
+
              case "set-username":
                  setUsername(value);
                  break;

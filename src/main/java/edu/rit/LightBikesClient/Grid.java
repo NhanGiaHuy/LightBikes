@@ -40,13 +40,15 @@ public class Grid extends JPanel {
     //Colors of lines (maybe set as a user setting?)
     private final Color PLAYER1 = Color.blue;
     private final Color PLAYER2 = Color.green;
-    
+
     private Bike bike1;
     private Bike bike2;
     private Bike controlledBike;
-    
+
     private boolean bike1GameState;
     private boolean bike2GameState;
+
+    private NetworkConnector connector;
 
     public Grid() {
         setPreferredSize(new Dimension(WIDTH + 1, HEIGHT + 1));//Plus one to assure the edge line is shown
@@ -57,19 +59,26 @@ public class Grid extends JPanel {
                 grid[x][y] = 0;
             }
         }
-        
-        bike1 = new Bike(25, 25, grid, 1, this);
+    }
+
+    /**
+     * Adds bikes to grid and lets game begin. Called by NetworkConnector
+     * @param controlled Id of the bike this user is controlling
+     */
+    public void startGame(int controlled) {
+        bike1 = new Bike(25, 75, grid, 1, this);
         bike2 = new Bike(75, 25, grid, 2, this);
 
-        int user = 1;
-
-        if(user == 1) {
+        if(controlled == 1) {
             controlledBike = bike1;
-        }else if(user == 2){
-            controlledBike = bike2;
-        }else{
-            System.out.println("user number error");
         }
+        else if(controlled == 2) {
+            controlledBike = bike2;
+        }
+    }
+
+    public void connect(String hostname, String username) {
+        connector = new NetworkConnector(hostname, username, this);
     }
 
     public void turnNorth() {
@@ -110,15 +119,15 @@ public class Grid extends JPanel {
                 }
             }
         }
-        
+
         bike1GameState = bike1.getGameState();
         bike2GameState = bike2.getGameState();
-        
+
         if(bike1GameState == false){
-        	
+
         }
         if(bike2GameState == false){
-        	
+
         }
     }
 
