@@ -4,11 +4,11 @@
         <field id="tpd3" name="Name" width="67" order="0"/>
         <field id="tpd4" name="Begin date" width="16" order="1"/>
         <field id="tpd5" name="End date" width="16" order="2"/>
-        <timeline><![CDATA[62,77,41,91,89,7,64,94,39,5,10,75,2,87,36,101,69,4,83,28,16,96]]></timeline>
+        <timeline><![CDATA[87,77,101,75,96,16,36,89,41,10,69,28,5,62,94,83,39,91,7,64,4]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="50" order="0"/>
-        <field id="1" name="Default role" width="49" order="1"/>
+        <field id="1" name="Default role" width="50" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -51,7 +51,7 @@
         </task>
         <task id="64" name="Handling collisions" color="#8cb6ce" meeting="false" start="2016-04-25" duration="5" complete="0" priority="2" expand="true"/>
         <task id="83" name="Begin working on Design Document" color="#8cb6ce" meeting="false" start="2016-05-09" duration="2" complete="0" priority="2" expand="true"/>
-        <task id="87" name="Write user documentation" color="#8cb6ce" meeting="false" start="2016-05-10" duration="1" complete="0" expand="true"/>
+        <task id="87" name="Write user documentation" color="#8cb6ce" meeting="false" start="2016-05-10" duration="2" complete="0" expand="true"/>
         <task id="89" name="Packaging client and server JARs" color="#8cb6ce" meeting="false" start="2016-05-09" duration="3" complete="0" priority="4" expand="true"/>
         <task id="91" name="Apply JavaDocs comments to project" color="#8cb6ce" meeting="false" start="2016-05-12" duration="1" complete="0" priority="0" expand="true"/>
         <task id="94" name="Create a server GUI" color="#8cb6ce" meeting="false" start="2016-05-16" duration="4" complete="0" priority="3" expand="true"/>
