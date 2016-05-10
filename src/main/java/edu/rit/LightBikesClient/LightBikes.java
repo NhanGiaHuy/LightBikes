@@ -124,7 +124,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         gameGrid.start();
         hostname = (String)JOptionPane.showInputDialog("What is your hostname?");
         username = (String)JOptionPane.showInputDialog("What is your username?");
-        gameGrid.connect(hostname, username;
+        gameGrid.connect(hostname, username);
         gameGrid.setFocusable(true);
         gameGrid.requestFocus();
         gameGrid.addKeyListener(this);
