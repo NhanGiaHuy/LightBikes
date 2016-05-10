@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
+* Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 package edu.rit.LightBikesClient;
 
@@ -15,20 +15,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * NetworkConnector.java
- *
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
- *
- *
- *
- * @author Felice Aprile
- * @author Justin W. Flory
- * @author Malcolm Jones
- * @author Timothy Endersby
- * @version 2016.04.11.v1
- */
+* NetworkConnector.java
+*
+* Assignment: Final Project
+* Class: Rochester Institute of Technology, ISTE-121.01, 2155
+* Professor: Michael Floeser
+*
+*
+*
+* @author Felice Aprile
+* @author Justin W. Flory
+* @author Malcolm Jones
+* @author Timothy Endersby
+* @version 2016.04.11.v1
+*/
 public class NetworkConnector {
 
     //Directional constants
@@ -47,9 +47,9 @@ public class NetworkConnector {
     private Grid grid;
 
     /**
-     * Creates a new connection to the server
-     * @return Nothing
-     */
+    * Creates a new connection to the server
+    * @return Nothing
+    */
     public NetworkConnector(String hostname, String username, Grid grid) {
         this.username = username;
         this.hostname = hostname;
@@ -58,8 +58,8 @@ public class NetworkConnector {
     }
 
     /**
-     * Connect to the server
-     */
+    * Connect to the server
+    */
     public void connect() {
         try {
             s = new Socket(hostname, PORT);
@@ -72,40 +72,43 @@ public class NetworkConnector {
         send(makeCommandString("set-username", username));
     }
 
-    /**
-     * Sends a properly formatted command string. It is recommended to use
-     * sendCommand() instead as it will format the string correctly for you.
-     * @param commandString The command string to send.
-     */
-    public void send(String commandString) {
-        out.println(commandString);
-    }
 
-    /**
-     * Starts the game within the Grid object
-     */
-    public void startGame(int controlled) {
-        grid.startGame(controlled);
-    }
 
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
     /**
-     * Send the current x,y position of the bike.
-     * @param x The X-coordinate of the bike
-     * @param y The Y-coordinate of the bike
-     */
+    * Send the current x,y position of the bike.
+    * @param x The X-coordinate of the bike
+    * @param y The Y-coordinate of the bike
+    */
     public void sendLocation(int x, int y) {
         sendCommand("set-location", ("" + x + "," + y));
     }
 
     /**
-     * Creates and sends a command string to server.
-     * @param  command  The command to send
-     * @param  value    The value to send
+     * Tell the server that the user hit a wall or the other player.
      */
+    public void notifyDeath() {
+        sendCommand("dead","true");
+    }
+
+    /**
+    * Sends a properly formatted command string. It is recommended to use
+    * sendCommand() instead as it will format the string correctly for you.
+    * @param commandString The command string to send.
+    */
+    public void send(String commandString) {
+        out.println(commandString);
+    }
+
+
+    /**
+    * Creates and sends a command string to server.
+    * @param  command  The command to send
+    * @param  value    The value to send
+    */
     public void sendCommand(String command, String value) {
         send(makeCommandString(command, value));
     }
@@ -118,32 +121,56 @@ public class NetworkConnector {
         return command + ":" + value + ";";
     }
 
-    public void notifyDeath() {
-        sendCommand("dead","true");
-    }
-
     /**
-     * Process a command string sent back by the server.
-     * @param cmdString The command string to be processed
-     */
+    * Process a command string sent back by the server.
+    * @param cmdString The command string to be processed
+    */
     public void processCommand(String cmdString) {
         String[] temp = cmdString.split(":");
         String command = temp[0];
         String value = temp[1];
 
         switch (command) {
-            case "resp-user-id":
-                setUserID(Integer.parseInt(value));
-                break;
+            case "resp-game-start":
+            startGame(value);
+            break;
+
             case "resp-username-list":
-                setPlayers(value);
-                break;
+            setPlayers(value);
+            break;
+
+            case "resp-update-location":
+            updateLocation(value);
         }
     }
 
-    private void setPlayers(String csvUsers) {
-        otherPlayers = csvUsers.split(",");
+    // Methods to process different commands from the server
+
+    /**
+    * Starts the game within the Grid object
+    */
+    private void startGame(String value) {
+        this.userID = Integer.parseInt(value);
+        grid.startGame(userID);
     }
+
+    /**
+    * Process the list of usernames sent by the server
+    * @param csvUsers A string of comma-serparated usenames;
+    */
+    private void setPlayers(String value) {
+        otherPlayers = value.split(",");
+    }
+
+    /**
+     * Update the location of the remote client's bike in this client.
+     * @param value The coordinates of the remote client's bike
+     */
+    private void updateLocation(String value) {
+        String[] pair = value.split(",");
+        grid.getServerBike().setLocation(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+    }
+
 
     class Listener implements Runnable {
 
@@ -151,10 +178,10 @@ public class NetworkConnector {
         Socket s;
 
         /**
-         * Creates a listener bound to a port
-         * @param  s The socket open with the server
-         * @return   Nothing
-         */
+        * Creates a listener bound to a port
+        * @param  s The socket open with the server
+        * @return   Nothing
+        */
         public Listener(Socket s) {
             this.s = s;
             try {
@@ -166,9 +193,9 @@ public class NetworkConnector {
         }
 
         /**
-         * Don't call directly -- use threadObj.start()
-         * Runs for the life of the connection, waiting to recieve messages
-         */
+        * Don't call directly -- use threadObj.start()
+        * Runs for the life of the connection, waiting to recieve messages
+        */
         public void run() {
             try {
                 while (true) {
