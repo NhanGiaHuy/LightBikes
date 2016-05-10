@@ -66,17 +66,22 @@ public class Grid extends JPanel {
      * @param controlled Id of the bike this user is controlling
      */
     public void startGame(int controlled) {
-        bike1 = new Bike(25, 75, grid, 1, this);
-        bike2 = new Bike(75, 25, grid, 2, this);
+        bike1 = new Bike(25, 75, grid, 1, Bike.DIRECTION_EAST, this);
+        bike2 = new Bike(75, 25, grid, 2, Bike.DIRECTION_WEST, this);
 
         if(controlled == 1) {
             controlledBike = bike1;
         }
-        else if(controlled == 2) {
+        else {
             controlledBike = bike2;
         }
     }
 
+    /**
+     * Initiates
+     * @param  [description]
+     * @param  [description]
+     */
     public void connect(String hostname, String username) {
         connector = new NetworkConnector(hostname, username, this);
     }
