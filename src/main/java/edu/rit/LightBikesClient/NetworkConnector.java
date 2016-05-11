@@ -67,7 +67,7 @@ public class NetworkConnector {
         catch (Exception e) {
             e.printStackTrace();
         }
-        sendUsername;
+        sendUsername(username);
     }
 
     /**

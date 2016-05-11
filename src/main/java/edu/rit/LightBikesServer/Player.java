@@ -126,7 +126,7 @@ public class Player implements Runnable {
     }
 
     public void sendPlayerID() {
-        push("rsp-user-id", playerID);
+        push("rsp-user-id", ""+playerID);
     }
 
 }

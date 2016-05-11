@@ -57,9 +57,9 @@ public class GameServer extends Application {
             while (acceptingPlayers) {
                 s = ss.accept();
                 System.out.println("Caught one - " + s);
-                Player temp = new Player(s, this);
+                Player temp = new Player(s,players.size(), this);
                 players.add(temp);
-                new Thread(new Player(s, players.size(),this)).start();
+                new Thread(temp).start();
                 acceptingPlayers = players.size() < MAX_CLIENTS;
             }
             startGame();
@@ -75,7 +75,7 @@ public class GameServer extends Application {
     }
 
     public void pushToPlayer(int playerID, String commandString) {
-        players.get(player-1).push(commandString);
+        players.get(playerID-1).push(commandString);
     }
 
     public void pushToOthers(int playerID, String commandString) {
