@@ -46,7 +46,9 @@ public class NetworkConnector {
 
     /**
     * Creates a new connection to the server
-    * @return Nothing
+    * @param hostname   The hostname of the server
+    * @param username   The username to send the server
+    * @param grid       The grid object to call methods in
     */
     public NetworkConnector(String hostname, String username, Grid grid) {
         this.username = username;
@@ -249,7 +251,12 @@ public class NetworkConnector {
             }
         }
 
-        public void parseCommands(String line) {
+        /**
+         * Parses a string of commands and breaks them into individual commands
+         * to be processed.
+         * @param line The string of different commands to process
+         */
+        private void parseCommands(String line) {
             String[] commands = line.split(";");
             for (String command : commands) {
                 processCommand(command);
