@@ -213,11 +213,10 @@ public class NetworkConnector {
     private void setUserID(String value) {
         userID = Integer.parseInt(value);
     }
-    
+
     public int getUserID(){
     	return userID;
     }
-
 
     class Listener implements Runnable {
 

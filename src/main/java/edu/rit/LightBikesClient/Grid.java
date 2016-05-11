@@ -18,8 +18,12 @@ import java.awt.*;
  * Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
  * Professor: Michael Floeser <p>
  *
- * This class is used as the grid GUI that the game is played on. The bike
- * objects will move across the grid as they leave the wall of light.
+ * <code>Grid</code> is used as the visible grid part of the GUI that the game
+ * is played on. <code>Bike</code> objects created by the <code>Grid</code> move
+ * across the visible grid once the game is started by calling the <code>
+ * startGame</code> method. <code>Grid</code> also establishes communication
+ * with the <code>GameServer</code> by creating an instance of
+ * <code>NetworkConnector</code>.
  *
  * @author Felice Aprile
  * @author Justin W. Flory
@@ -29,28 +33,75 @@ import java.awt.*;
  */
 public class Grid extends JPanel {
 
+    /**
+     * Height used as a constant in calculating the size of the visible GUI and
+     * the grid array.
+     */
     private final int GRID_HEIGHT = 100;
-    private final int GRID_WIDTH = 100;
-    private final int DELAY_IN_MILLS = 100;
-    private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
-    private final int WIDTH = GRID_WIDTH * 5;
-    private final int HEIGHT = GRID_HEIGHT * 5;
-    private int i = 0;
 
-    //Colors of lines (maybe set as a user setting?)
+    /**
+     * Width used as a constant in calculating the size of the visible GUI and
+     * the grid array.
+     */
+    private final int GRID_WIDTH = 100;
+
+    /**
+     * Two-dimensional grid to keep track of which bikes have "claimed" which
+     * spots on the visible grid.
+     */
+    private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
+
+    /**
+     * Number of pixels that make up the width of the graphical grid.
+     */
+    private final int WIDTH = GRID_WIDTH * 5;
+
+    /**
+     * Number of pixels that make up the height of the graphical grid.
+     */
+    private final int HEIGHT = GRID_HEIGHT * 5;
+
+    //Colors of lines
+    /**
+     * Color for player 1's bike trail.
+     */
     private final Color PLAYER1 = Color.blue;
+
+    /**
+     * Color for player 2's bike trail.
+     */
     private final Color PLAYER2 = Color.red;
 
+    /**
+     * Bike object of player 1.
+     */
     private Bike bike1;
+
+    /**
+     * Bike object of player 2.
+     */
     private Bike bike2;
+
+    /**
+     * Bike object that the user of this client is controlling.
+     */
     private Bike controlledBike;
+
+    /**
+     * Bike object that the remote player is controlling (through the server).
+     */
     private Bike serverBike;
 
-    private boolean bike1GameState;
-    private boolean bike2GameState;
-
+    /**
+     * Network communications object that the <code>Grid</code> and <code>Bike
+     * </code> instances use for communicating with the <code>GameServer</code>.
+     */
     private NetworkConnector connector;
 
+    /**
+     * Creates a new instance of <code>Grid</code> and creates the container for
+     * the visible gameplay grid.
+     */
     public Grid() {
         setPreferredSize(new Dimension(WIDTH + 1, HEIGHT + 1));//Plus one to assure the edge line is shown
 
@@ -97,46 +148,82 @@ public class Grid extends JPanel {
         connector = new NetworkConnector(hostname, username, this);
     }
 
+    /**
+     * Turns the user-controlled bike in the logically north direction.
+     */
     public void turnNorth() {
         controlledBike.turnNorth();
     }
 
+    /**
+     * Turns the user-controlled bike in the logically east direction.
+     */
     public void turnEast() {
         controlledBike.turnEast();
     }
 
+    /**
+     * Turns the user-controlled bike in the logically south direction.
+     */
     public void turnSouth() {
         controlledBike.turnSouth();
     }
 
+    /**
+     * Turns the user-controlled bike in the logically west direction.
+     */
     public void turnWest() {
         controlledBike.turnWest();
     }
 
+    /**
+     * Signals the user-controlled bike to stop moving.
+     */
     public void stop(){
     	controlledBike.stop();
     }
 
-    public void won() {
-        controlledBike.won();
-    }
-
-    public void lost() {
-        controlledBike.lost();
-    }
+    /**
+     * Creates a popup message dialog to let the user know they won.
+     */
+    public void won(){
+		JOptionPane.showMessageDialog(null, "You Win!");
+	}
 
     /**
-     * Returns the other player's bike (Used by Network Connector).
+     * Creates a popup message dialog to let the user know they lost.
+     */
+	public void lost(){
+		JOptionPane.showMessageDialog(null, "You Lost :/");
+	}
+
+
+    /**
+     * Returns the <code>Bike</code> object that is being controlled by the
+     * remote player. <p>
+     * This method is utilized by <code>NetworkConnector</code> to manipulate the
+     * <code>Bike</code> instance that is server-controlled.
      * @return Bike object that this client is not controlling
      */
     public Bike getServerBike() {
         return serverBike;
     }
 
+    /**
+     * Returns the <code>NetworkConnector</code> instance created by the <code>
+     * connect</code> method for communication with the <code>GameServer</code>.
+     * @return The <code>NetworkConnector</code> instance created by this object.
+     */
     public NetworkConnector getConnector() {
         return connector;
     }
 
+    /**
+     * Paints the visible grid on the screen based on the differnt values in the
+     * <code>grid</code> array.
+     * @param g Graphics object
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         //EDGES

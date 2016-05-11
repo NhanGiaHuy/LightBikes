@@ -13,13 +13,17 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 /**
-* Bike.java
+* Bike.java	<p>
 *
-* Assignment: Final Project
-* Class: Rochester Institute of Technology, ISTE-121.01, 2155
-* Professor: Michael Floeser
+* Assignment: Final Project <p>
+* Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+* Professor: Michael Floeser <p>
 *
-*
+* A <code>Bike</code> represents each player on screen. Each <code>Bike</code>
+* object keeps track of its location, and updates its position in the <code>
+* Grid</code> object. The <code>Movement</code> inner class is used to move the
+* bike forward in a constant direction as specified by the <code>direction</code>
+* attribute.
 *
 * @author Felice Aprile
 * @author Justin W. Flory
@@ -89,14 +93,6 @@ public class Bike {
 
 	public void stop(){
 		gameState = false;
-	}
-
-	public void won(){
-		JOptionPane.showMessageDialog(null, "You Win!");
-	}
-
-	public void lost(){
-		JOptionPane.showMessageDialog(null, "You Lost :/");
 	}
 
 	public boolean checkLocation(int x, int y) {
