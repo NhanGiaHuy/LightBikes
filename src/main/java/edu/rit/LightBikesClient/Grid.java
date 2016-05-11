@@ -14,12 +14,12 @@ import java.awt.*;
 /**
  * Grid.java
  * <p>
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
- * <p>
- * This class is used as the grid GUI that the game is played on. The bike objects will move across the grid as they
- * leave the wall of light.
+ * Assignment: Final Project <p>
+ * Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+ * Professor: Michael Floeser <p>
+ *
+ * This class is used as the grid GUI that the game is played on. The bike
+ * objects will move across the grid as they leave the wall of light.
  *
  * @author Felice Aprile
  * @author Justin W. Flory

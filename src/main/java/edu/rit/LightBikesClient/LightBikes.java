@@ -14,18 +14,21 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * LightBikes.java
+ * LightBikes.java <p>
  *
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
+ * Assignment: Final Project <p>
+ * Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+ * Professor: Michael Floeser <p>
  *
- * This class is the main class for the LightBikes game created for our team's final project in ISTE-121. The game is
- * modeled after the TRON-esque light bikes in the movie and in the arcade. Players control a bike that leaves a
- * "wall of light" behind them as they travel across the game grid. They face an opponent who is also leaving a wall
- * of light behind them. If one player hits the wall of light, they lose and the game ends.
+ * This class is the main class for the LightBikes game created for our team's
+ * final project in ISTE-121. The game is modeled after the TRON-esque light
+ * bikes in the movie and in the arcade. Players control a bike that leaves a
+ * "wall of light" behind them as they travel across the game grid. They face
+ * an opponent who is also leaving a wall of light behind them. If one player
+ * hits the wall of light, they lose and the game ends.
+ * <p>
  *
- * This class is the main file and is executed as the game client.
+ * This class is the main file and is executed as the game client. <p>
  *
  * This class is responsible for the GUI
  *
