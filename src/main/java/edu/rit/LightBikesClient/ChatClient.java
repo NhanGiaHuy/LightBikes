@@ -108,7 +108,7 @@ public class ChatClient {
                 try {
                     chat.append(br.readLine() + "\n");
                 } catch (IOException e) {
-                    System.out.println("Client closed.");
+                    //tem.out.println("Client closed.");
                     break;
                 }
             }
