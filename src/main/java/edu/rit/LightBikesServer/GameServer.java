@@ -8,18 +8,10 @@
 
 package edu.rit.LightBikesServer;
 
-import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
-
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.Vector;
-import java.util.Scanner;
 
 
 /**
@@ -37,14 +29,13 @@ import java.util.Scanner;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class GameServer extends Application {
+public class GameServer extends JFrame {
     private static final int PORT = 8888;
     public static final int MAX_CLIENTS = 2;
     private boolean acceptingPlayers = true;
     private Vector<Player> players = new Vector<Player>();
 
     public static void main (String[] args) {
-        launch(args);
         new GameServer();
     }
 
@@ -91,10 +82,5 @@ public class GameServer extends Application {
 
     public void startGame() {
         pushToAll(makeCommandString("rsp-game-start", "true"));
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        //redo JavaFX here
     }
 }
