@@ -8,6 +8,7 @@
 
 package edu.rit.LightBikesServer;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.Vector;
@@ -37,16 +38,18 @@ public class Player implements Runnable {
     private GameServer gameServer;
     private PrintWriter out;
     private Socket s;
+    public JTextArea playerOutput;
 
     /**
     * Create a new subserver for a Player
     * @param  s The socket the client is connected to
     * @return   Nothing
     */
-    public Player(Socket s, int playerID, GameServer gameServer) {
+    public Player(Socket s, int playerID, GameServer gameServer, JTextArea playerOutput) {
         this.s = s;
         this.playerID = playerID;
         this.gameServer = gameServer;
+        this.playerOutput = playerOutput;
     }
 
     /**
@@ -61,7 +64,7 @@ public class Player implements Runnable {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Debug: sending player id: " + playerID + "to " + s);
+        playerOutput.append("Debug: sending player id: " + playerID + "to " + s + "\n");
         sendPlayerID();
 
         if (playerID == gameServer.MAX_CLIENTS) {
@@ -107,7 +110,7 @@ public class Player implements Runnable {
         String command = temp[0];
         String value = temp[1];
 
-        System.out.println("Processing " + cmdString);
+        playerOutput.append("Processing " + cmdString + "\n");
 
         switch (command) {
 
@@ -158,7 +161,7 @@ class Listener implements Runnable {
     * @return   Nothing
     */
     public Listener(Socket s, Player p) {
-        System.out.println("Listener started for " + s);
+        p.playerOutput.append("Listener started for " + s + "\n");
         this.s = s;
         this.p = p;
         try {
@@ -175,16 +178,16 @@ class Listener implements Runnable {
     */
     public void run() {
         try {
-            System.out.println("Listener starting...");
+            p.playerOutput.append("Listener starting...\n");
             while (true) {
-                System.out.println("Waiting for stuffs from client");
+                p.playerOutput.append("Waiting for stuffs from client\n");
                 String line = scan.nextLine();
-                System.out.println("Parsing " + line);
+                p.playerOutput.append("Parsing " + line + "\n");
                 parseCommands(line);
             }
         }
         catch (Exception e) {
-            System.out.println("Connection to client " + s + " lost.");
+            p.playerOutput.append("Connection to client " + s + " lost.\n");
         }
     }
 

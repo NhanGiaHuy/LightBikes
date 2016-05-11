@@ -9,6 +9,7 @@
 package edu.rit.LightBikesServer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.util.Vector;
@@ -40,18 +41,70 @@ public class GameServer extends JFrame {
     }
 
     public GameServer() {
+
+        setLayout(new BorderLayout());
+
+        JPanel topLables = new JPanel(new GridLayout(0, 3));
+
+        JLabel player1Lable = new JLabel("Player 1");
+        player1Lable.setHorizontalAlignment(JLabel.CENTER);
+        topLables.add(player1Lable);
+
+        JLabel player2Lable = new JLabel("Player 2");
+        player2Lable.setHorizontalAlignment(JLabel.CENTER);
+        topLables.add(player2Lable);
+
+        JLabel chatLable = new JLabel("Chat");
+        chatLable.setHorizontalAlignment(JLabel.CENTER);
+        topLables.add(chatLable);
+
+        add(topLables, BorderLayout.NORTH);
+
+        JPanel centerTexts = new JPanel(new GridLayout(0, 3));
+
+        JTextArea player1 = new JTextArea(25, 15);
+
+        JScrollPane scroll = new JScrollPane(player1);
+        //scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        player1.setEditable(false);
+        //centerTexts.add(player1);
+        centerTexts.add(scroll);
+
+        JTextArea player2 = new JTextArea(25, 15);
+        player2.setEditable(false);
+        centerTexts.add(player2);
+
+        JTextArea chat = new JTextArea(25, 15);
+        chat.setEditable(false);
+        centerTexts.add(chat);
+        add(centerTexts, BorderLayout.CENTER);
+
+        pack();
+        setLocationRelativeTo(null);
+        setTitle("Light Bikes Server");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+
         ServerSocket ss = null;
         Socket s = null;
         try {
             ss = new ServerSocket(PORT);
-            System.out.println("Waiting for client connections...");
+            player1.append("Waiting for client connections...\n");
             while (acceptingPlayers) {
                 s = ss.accept();
-                System.out.println("Caught one - " + s);
-                Player temp = new Player(s, players.size() + 1, this);
+                Player temp = null;
+                if(players.size() == 0) {
+                    player1.append("Caught one - " + s + "\n");
+                    temp = new Player(s, players.size() + 1, this, player1);
+                } else if(players.size() == 1)  {
+                    player2.append("Caught one - " + s + "\n");
+                    temp = new Player(s, players.size() + 1, this, player2);
+                }
                 players.add(temp);
                 new Thread(temp).start();
                 acceptingPlayers = players.size() < MAX_CLIENTS;
+                player2.append("Waiting for client connections...");
             }
         }
         catch (IOException ioe) {
