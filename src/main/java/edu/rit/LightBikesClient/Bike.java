@@ -39,7 +39,7 @@ public class Bike {
 	public int[][] gridArray;
 	public int player;
 	private int direction;
-	private static final int DELAY_IN_MILLS = 100;
+	private static final int DELAY_IN_MILLS = 80;
 	public boolean gameState;
 	private Grid grid;
 	private NetworkConnector connector;
