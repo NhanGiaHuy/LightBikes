@@ -113,6 +113,10 @@ public class Grid extends JPanel {
     public void turnWest() {
         controlledBike.turnWest();
     }
+    
+    public void stop(){
+    	controlledBike.stop();
+    }
 
     /**
      * Returns the other player's bike (Used by Network Connector).
@@ -148,18 +152,5 @@ public class Grid extends JPanel {
                 }
             }
         }
-
-        // bike1GameState = bike1.getGameState();
-        // bike2GameState = bike2.getGameState();
-        //
-        // if(bike1GameState == false){
-        //
-        // }
-        // if(bike2GameState == false){
-        //
-        // }
-    }
-
-    public void start() {
     }
 }

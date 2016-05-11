@@ -10,7 +10,10 @@ package edu.rit.LightBikesClient;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JOptionPane;
+
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
+
 import sun.net.www.content.text.plain;
 
 /**
@@ -78,6 +81,14 @@ public class Bike {
 
 	public void turnNorth(){
 		direction = DIRECTION_NORTH;
+	}
+	
+	public void stop(){
+		gameState = false;
+	}
+	
+	public void won(){
+		JOptionPane.showMessageDialog(null, "You Win!");
 	}
 
 	public boolean checkLocation(int x, int y) {
