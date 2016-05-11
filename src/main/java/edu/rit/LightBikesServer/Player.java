@@ -180,9 +180,9 @@ class Listener implements Runnable {
         try {
             p.playerOutput.append("Listener starting...\n");
             while (true) {
-                p.playerOutput.append("Waiting for stuffs from client\n");
+                //p.playerOutput.append("Waiting for stuffs from client\n");
                 String line = scan.nextLine();
-                p.playerOutput.append("Parsing " + line + "\n");
+                //p.playerOutput.append("Parsing " + line + "\n");
                 parseCommands(line);
             }
         }

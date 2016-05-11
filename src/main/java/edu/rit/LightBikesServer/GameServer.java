@@ -9,6 +9,7 @@
 package edu.rit.LightBikesServer;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
@@ -62,22 +63,26 @@ public class GameServer extends JFrame {
 
         JPanel centerTexts = new JPanel(new GridLayout(0, 3));
 
-        JTextArea player1 = new JTextArea(25, 15);
-
-        JScrollPane scroll = new JScrollPane(player1);
-        //scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
+        JTextArea player1 = new JTextArea(35, 25);
+        JScrollPane scroll1 = new JScrollPane(player1);
+        DefaultCaret caret1 = (DefaultCaret) player1.getCaret();
+        caret1.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         player1.setEditable(false);
-        //centerTexts.add(player1);
-        centerTexts.add(scroll);
+        centerTexts.add(scroll1);
 
-        JTextArea player2 = new JTextArea(25, 15);
+        JTextArea player2 = new JTextArea(35, 25);
+        JScrollPane scroll2 = new JScrollPane(player2);
+        DefaultCaret caret2 = (DefaultCaret) player2.getCaret();
+        caret2.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         player2.setEditable(false);
-        centerTexts.add(player2);
+        centerTexts.add(scroll2);
 
-        JTextArea chat = new JTextArea(25, 15);
+        JTextArea chat = new JTextArea(35, 25);
+        JScrollPane scrollChat = new JScrollPane(chat);
+        DefaultCaret caretChat = (DefaultCaret) chat.getCaret();
+        caretChat.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         chat.setEditable(false);
-        centerTexts.add(chat);
+        centerTexts.add(scrollChat);
         add(centerTexts, BorderLayout.CENTER);
 
         pack();
