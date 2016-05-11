@@ -11,9 +11,6 @@ package edu.rit.LightBikesClient;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JOptionPane;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
-
-import sun.net.www.content.text.plain;
 
 /**
 * Bike.java

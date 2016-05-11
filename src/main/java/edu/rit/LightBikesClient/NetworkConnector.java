@@ -62,7 +62,7 @@ public class NetworkConnector {
     */
     public void connect() {
         try {
-            System.out.println("Debug: Network Connector connecting to server");
+            //System.out.println("Debug: Network Connector connecting to server");
             s = new Socket(hostname, PORT);
             out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
             new Thread(new Listener(s)).start();
@@ -71,7 +71,7 @@ public class NetworkConnector {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Debug: connected, sending username");
+        //System.out.println("Debug: connected, sending username");
         sendUsername(username);
     }
 
@@ -106,7 +106,7 @@ public class NetworkConnector {
     * @param commandString The command string to send.
     */
     private void send(String commandString) {
-        System.out.println("Sending " + commandString);
+        //System.out.println("Sending " + commandString);
         try {
             if (out == null) {
                 out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
@@ -157,7 +157,7 @@ public class NetworkConnector {
         String command = temp[0];
         String value = temp[1];
 
-        System.out.println("Processing " + cmdString);
+        //System.out.println("Processing " + cmdString);
 
         switch (command) {
             case "rsp-user-id":
@@ -189,7 +189,7 @@ public class NetworkConnector {
     * Starts the game within the Grid object. UserID must already set
     */
     private void startGame(String value) {
-        System.out.println("Startgame network connector");
+        //System.out.println("Startgame network connector");
         grid.startGame(userID);
     }
 
@@ -212,6 +212,10 @@ public class NetworkConnector {
 
     private void setUserID(String value) {
         userID = Integer.parseInt(value);
+    }
+    
+    public int getUserID(){
+    	return userID;
     }
 
 
