@@ -119,7 +119,6 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
-        gameGrid.start();
         hostname = JOptionPane.showInputDialog(null, "Enter the server hostname:");
         username = JOptionPane.showInputDialog(null, "Enter your desired username:");
         gameGrid.connect(hostname, username);
