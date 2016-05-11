@@ -67,6 +67,13 @@ public class Grid extends JPanel {
      * @param controlled Id of the bike this user is controlling
      */
     public void startGame(int controlled) {
+        try {
+            Thread.sleep(1000);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("Debug: startGame in Grid class");
         bike1 = new Bike(25, 75, grid, 1, Bike.DIRECTION_EAST, this);
         bike2 = new Bike(75, 25, grid, 2, Bike.DIRECTION_WEST, this);
 
@@ -78,6 +85,8 @@ public class Grid extends JPanel {
             controlledBike = bike2;
             serverBike = bike1;
         }
+
+        controlledBike.startGame();
     }
 
     /**
@@ -140,15 +149,15 @@ public class Grid extends JPanel {
             }
         }
 
-        bike1GameState = bike1.getGameState();
-        bike2GameState = bike2.getGameState();
-
-        if(bike1GameState == false){
-
-        }
-        if(bike2GameState == false){
-
-        }
+        // bike1GameState = bike1.getGameState();
+        // bike2GameState = bike2.getGameState();
+        //
+        // if(bike1GameState == false){
+        //
+        // }
+        // if(bike2GameState == false){
+        //
+        // }
     }
 
     public void start() {

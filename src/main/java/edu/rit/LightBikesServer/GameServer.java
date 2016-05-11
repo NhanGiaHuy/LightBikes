@@ -39,7 +39,7 @@ import java.util.Scanner;
  */
 public class GameServer extends Application {
     private static final int PORT = 8888;
-    private static final int MAX_CLIENTS = 2;
+    public static final int MAX_CLIENTS = 2;
     private boolean acceptingPlayers = true;
     private Vector<Player> players = new Vector<Player>();
 
@@ -57,12 +57,11 @@ public class GameServer extends Application {
             while (acceptingPlayers) {
                 s = ss.accept();
                 System.out.println("Caught one - " + s);
-                Player temp = new Player(s,players.size(), this);
+                Player temp = new Player(s, players.size() + 1, this);
                 players.add(temp);
                 new Thread(temp).start();
                 acceptingPlayers = players.size() < MAX_CLIENTS;
             }
-            startGame();
         }
         catch (IOException ioe) {
         }
@@ -90,7 +89,7 @@ public class GameServer extends Application {
         return command + ":" + value + ";";
     }
 
-    private void startGame() {
+    public void startGame() {
         pushToAll(makeCommandString("rsp-game-start", "true"));
     }
 

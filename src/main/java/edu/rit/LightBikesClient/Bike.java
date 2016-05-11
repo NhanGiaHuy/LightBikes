@@ -81,13 +81,14 @@ public class Bike {
 	}
 
 	public boolean checkLocation(int x, int y) {
-		return x > 0 && x < gridArray.length && y > 0 && y < gridArray[0].length && gridArray[x][y] != 0;
+		return x > 0 && x < gridArray.length && y > 0 && y < gridArray[0].length && gridArray[x][y] == 0;
 	}
 
 	/**
 	 * Update the location of the bike
 	 */
 	public void updateLocation() {
+		System.out.println("Debug: updating location");
 		gridArray[xPosition][yPosition] = player;
 		grid.repaint();
 	}
@@ -120,6 +121,7 @@ public class Bike {
 	 * when the server starts the game)
 	 */
 	public void startGame() {
+		System.out.println("Debug: startgame() in Bike class");
 		new Thread(new Movement()).start();
 	}
 
@@ -128,11 +130,14 @@ public class Bike {
 
 		@Override
 		public void run() {
+			System.out.println("Debug: Movement thread running");
 			NetworkConnector connector = grid.getConnector();
 			while (gameState) {
+				System.out.println("Debug: movingg");
 				switch(direction) {
 
 					case DIRECTION_NORTH:
+					System.out.println("Debug: moving north");
 					gameState = checkLocation(xPosition, yPosition-1);
 					if (gameState) {
 						yPosition--;
@@ -140,6 +145,7 @@ public class Bike {
 					break;
 
 					case DIRECTION_EAST:
+					System.out.println("Debug: moving east");
 					gameState = checkLocation(xPosition+1, yPosition);
 					if (gameState) {
 						xPosition++;
@@ -147,6 +153,7 @@ public class Bike {
 					break;
 
 					case DIRECTION_SOUTH:
+					System.out.println("Debug: moving south");
 					gameState = checkLocation(xPosition, yPosition+1);
 					if (gameState) {
 						yPosition++;
@@ -154,6 +161,7 @@ public class Bike {
 					break;
 
 					case DIRECTION_WEST:
+					System.out.println("Debug: moving west");
 					gameState = checkLocation(xPosition-1, yPosition);
 					if (gameState) {
 						xPosition--;
@@ -162,6 +170,7 @@ public class Bike {
 				}
 
 				if (!gameState) {
+					System.out.println("Debug: hit a wall or something");
 					break;
 				}
 

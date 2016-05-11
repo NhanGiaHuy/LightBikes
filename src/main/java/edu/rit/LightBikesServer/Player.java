@@ -59,8 +59,14 @@ public class Player implements Runnable {
             new Thread(new Listener(s, this)).start();
         }
         catch (Exception e) {
+            e.printStackTrace();
         }
+        System.out.println("Debug: sending player id: " + playerID + "to " + s);
         sendPlayerID();
+
+        if (playerID == gameServer.MAX_CLIENTS) {
+            gameServer.startGame();
+        }
     }
 
     /**
@@ -100,6 +106,8 @@ public class Player implements Runnable {
         String[] temp = cmdString.split(":");
         String command = temp[0];
         String value = temp[1];
+
+        System.out.println("Processing " + cmdString);
 
         switch (command) {
 
@@ -146,6 +154,7 @@ class Listener implements Runnable {
     * @return   Nothing
     */
     public Listener(Socket s, Player p) {
+        System.out.println("Listener started for " + s);
         this.s = s;
         this.p = p;
         try {
@@ -162,8 +171,11 @@ class Listener implements Runnable {
     */
     public void run() {
         try {
+            System.out.println("Listener starting...");
             while (true) {
+                System.out.println("Waiting for stuffs from client");
                 String line = scan.nextLine();
+                System.out.println("Parsing " + line);
                 parseCommands(line);
             }
         }

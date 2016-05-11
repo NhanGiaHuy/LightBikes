@@ -60,20 +60,23 @@ public class NetworkConnector {
     */
     public void connect() {
         try {
+            System.out.println("Debug: Network Connector connecting to server");
             s = new Socket(hostname, PORT);
             out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
             new Thread(new Listener(s)).start();
+            Thread.sleep(1000);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Debug: connected, sending username");
         sendUsername(username);
     }
 
     /**
-     * Change this client's username on the server
-     * @param username The username to send.
-     */
+    * Change this client's username on the server
+    * @param username The username to send.
+    */
     public void sendUsername(String username) {
         sendCommand("set-username", username);
     }
@@ -89,8 +92,8 @@ public class NetworkConnector {
     }
 
     /**
-     * Tell the server that the user died
-     */
+    * Tell the server that the user died
+    */
     public void notifyDeath() {
         sendCommand("set-dead","true");
     }
@@ -101,7 +104,17 @@ public class NetworkConnector {
     * @param commandString The command string to send.
     */
     private void send(String commandString) {
-        out.println(commandString);
+        System.out.println("Sending " + commandString);
+        try {
+            if (out == null) {
+                out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            }
+            out.println(commandString);
+            out.flush();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -124,11 +137,11 @@ public class NetworkConnector {
     }
 
     /**
-     * Generates a properly formatted command string to be sent to the server
-     * @param   command The command to be contained in the command string
-     * @param   value   The value to be contained in the command string
-     * @return  Generated command string
-     */
+    * Generates a properly formatted command string to be sent to the server
+    * @param   command The command to be contained in the command string
+    * @param   value   The value to be contained in the command string
+    * @return  Generated command string
+    */
     private String makeCommandString(String command, String value) {
         return command + ":" + value + ";";
     }
@@ -142,20 +155,22 @@ public class NetworkConnector {
         String command = temp[0];
         String value = temp[1];
 
+        System.out.println("Processing " + cmdString);
+
         switch (command) {
-            case "resp-user-id":
+            case "rsp-user-id":
             setUserID(value);
             break;
 
-            case "resp-game-start":
+            case "rsp-game-start":
             startGame(value);
             break;
 
-            case "resp-username-list":
+            case "rsp-username-list":
             setPlayers(value);
             break;
 
-            case "resp-update-location":
+            case "rsp-update-location":
             updateLocation(value);
             break;
         }
@@ -167,6 +182,7 @@ public class NetworkConnector {
     * Starts the game within the Grid object. UserID must already set
     */
     private void startGame(String value) {
+        System.out.println("Startgame network connector");
         grid.startGame(userID);
     }
 
@@ -179,9 +195,9 @@ public class NetworkConnector {
     }
 
     /**
-     * Update the location of the remote client's bike in this client.
-     * @param value The coordinates of the remote client's bike
-     */
+    * Update the location of the remote client's bike in this client.
+    * @param value The coordinates of the remote client's bike
+    */
     private void updateLocation(String value) {
         String[] pair = value.split(",");
         grid.getServerBike().setLocation(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
