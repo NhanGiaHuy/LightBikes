@@ -113,9 +113,17 @@ public class Grid extends JPanel {
     public void turnWest() {
         controlledBike.turnWest();
     }
-    
+
     public void stop(){
     	controlledBike.stop();
+    }
+
+    public void won() {
+        controlledBike.won();
+    }
+
+    public void lost() {
+        controlledBike.lost();
     }
 
     /**

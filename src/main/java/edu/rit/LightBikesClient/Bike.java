@@ -82,13 +82,17 @@ public class Bike {
 	public void turnNorth(){
 		direction = DIRECTION_NORTH;
 	}
-	
+
 	public void stop(){
 		gameState = false;
 	}
-	
+
 	public void won(){
 		JOptionPane.showMessageDialog(null, "You Win!");
+	}
+
+	public void lost(){
+		JOptionPane.showMessageDialog(null, "You Lost :/");
 	}
 
 	public boolean checkLocation(int x, int y) {
@@ -182,7 +186,9 @@ public class Bike {
 
 				if (!gameState) {
 					System.out.println("Debug: hit a wall or something");
+					grid.stop();
 					connector.notifyDeath();
+					grid.lost();
 					break;
 				}
 

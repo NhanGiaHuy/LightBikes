@@ -175,7 +175,8 @@ public class NetworkConnector {
             break;
 
             case "rsp-dead":
-            // What we do when someone dieee?
+            grid.stop();
+            grid.won();
             break;
         }
     }
