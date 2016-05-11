@@ -39,7 +39,7 @@ public class Grid extends JPanel {
 
     //Colors of lines (maybe set as a user setting?)
     private final Color PLAYER1 = Color.blue;
-    private final Color PLAYER2 = Color.green;
+    private final Color PLAYER2 = Color.red;
 
     private Bike bike1;
     private Bike bike2;
