@@ -39,7 +39,7 @@ public class Grid extends JPanel {
 
     //Colors of lines (maybe set as a user setting?)
     private final Color PLAYER1 = Color.blue;
-    private final Color PLAYER2 = Color.green;
+    private final Color PLAYER2 = Color.red;
 
     private Bike bike1;
     private Bike bike2;
@@ -73,7 +73,6 @@ public class Grid extends JPanel {
         catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("Debug: startGame in Grid class");
         bike1 = new Bike(25, 75, grid, 1, Bike.DIRECTION_EAST, this);
         bike2 = new Bike(75, 25, grid, 2, Bike.DIRECTION_WEST, this);
 
@@ -139,7 +138,6 @@ public class Grid extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        System.out.println("repaint");
         super.paintComponent(g);
         //EDGES
         g.drawLine(0, 0, 0, HEIGHT);//left side
