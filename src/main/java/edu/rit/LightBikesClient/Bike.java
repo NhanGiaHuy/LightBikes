@@ -11,7 +11,6 @@ package edu.rit.LightBikesClient;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JOptionPane;
-
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 
 import sun.net.www.content.text.plain;
@@ -68,19 +67,27 @@ public class Bike {
 	*/
 
 	public void turnWest(){
-		direction = DIRECTION_WEST;
+		if(direction != DIRECTION_EAST){
+			direction = DIRECTION_WEST;
+		}
 	}
 
 	public void turnEast(){
-		direction = DIRECTION_EAST;
+		if(direction != DIRECTION_WEST){
+			direction = DIRECTION_EAST;
+		}
 	}
 
 	public void turnSouth(){
-		direction = DIRECTION_SOUTH;
+		if(direction != DIRECTION_NORTH){
+			direction = DIRECTION_SOUTH;
+		}
 	}
 
 	public void turnNorth(){
-		direction = DIRECTION_NORTH;
+		if(direction != DIRECTION_SOUTH){
+			direction = DIRECTION_NORTH;
+		}
 	}
 
 	public void stop(){
