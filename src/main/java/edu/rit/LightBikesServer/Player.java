@@ -118,6 +118,10 @@ public class Player implements Runnable {
             case "set-location":
             pushToOthers("rsp-update-location", value);
             break;
+
+            case "set-dead":
+            pushToOthers("rsp-dead", value);
+            break;
         }
     }
 

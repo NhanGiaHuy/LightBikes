@@ -173,6 +173,10 @@ public class NetworkConnector {
             case "rsp-update-location":
             updateLocation(value);
             break;
+
+            case "rsp-dead":
+            // What we do when someone dieee?
+            break;
         }
     }
 
@@ -240,7 +244,7 @@ public class NetworkConnector {
                 }
             }
             catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Lost the server connection");
             }
         }
 

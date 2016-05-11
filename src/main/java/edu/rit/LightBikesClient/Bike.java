@@ -171,6 +171,7 @@ public class Bike {
 
 				if (!gameState) {
 					System.out.println("Debug: hit a wall or something");
+					connector.notifyDeath();
 					break;
 				}
 
