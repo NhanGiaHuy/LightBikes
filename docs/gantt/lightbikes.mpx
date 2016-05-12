@@ -1,0 +1,98 @@
+MPX,Microsoft Project for Windows,4.0,ANSI
+10,$,1,2,",",.
+11,2,0,1,8.00,40.00,$10.00/h,$15.00/h,1,0
+12,1,0,480,/,:,am,pm,20,20
+20,Standard,0,1,1,1,1,1,0
+25,1
+25,2,08:00 am,12:00 pm,01:00 pm,05:00 pm
+25,3,08:00 am,12:00 pm,01:00 pm,05:00 pm
+25,4,08:00 am,12:00 pm,01:00 pm,05:00 pm
+25,5,08:00 am,12:00 pm,01:00 pm,05:00 pm
+25,6,08:00 am,12:00 pm,01:00 pm,05:00 pm
+25,7
+30,Project1,,,Standard,13/04/2016,19/05/2016,0,12/05/2016,,$0.00,$0.00,$0.00,0h,0h,0h,0%,0d,0d,0d,0%,,,,,0d,0d
+40,Name,Email Address,ID,Unique ID
+41,1,11,40,49
+50,Justin W. Flory,jflory7@gmail.com,1,1
+50,Tim Endersby,endersbyt@gmail.com,2,2
+50,Malcolm Jones,malcolmljones@me.com,3,3
+50,Felice Aprile,felaprile@gmail.com,4,4
+60,Name,WBS,Outline Level,Cost,Duration,Actual Duration,Remaining Duration,% Complete,Start,Finish,Fixed,Milestone,ID,Constraint Type,Priority,Unique ID,Outline Number
+61,1,2,3,30,40,42,43,44,50,51,80,81,90,91,95,98,99
+70,,0,0,,37d,,,,13/04/2016,19/05/2016,No,,0,As Soon As Possible,,0,0
+70,Create keypress events for bikes,1,1,$0.00,1d,0d,1d,0%,18/04/2016,18/04/2016,No,No,1,As Soon As Possible,Medium,36,1
+75,4,1,1d,,0d,,,,,18/04/2016,18/04/2016,,4
+76,,0,0,NA,NA
+70,Create initial framework for GameServer,2,1,$0.00,6d,0d,6d,0%,18/04/2016,25/04/2016,No,No,2,As Soon As Possible,High,39,2
+75,3,1,6d,,0d,,,,,18/04/2016,25/04/2016,,3
+76,,0,0,NA,NA
+70,Integrating client with server network,3,1,$0.00,6d,0d,6d,0%,25/04/2016,02/05/2016,No,No,3,As Soon As Possible,Medium,69,3
+75,3,1,6d,,0d,,,,,25/04/2016,02/05/2016,,3
+76,,0,0,NA,NA
+75,4,1,6d,,0d,,,,,25/04/2016,02/05/2016,,4
+76,,0,0,NA,NA
+70,Establish communications between client/server,4,1,$0.00,0d,0d,0d,0%,25/04/2016,25/04/2016,No,Yes,4,As Soon As Possible,High,41,4
+75,1,1,0d,,0d,,,,,25/04/2016,25/04/2016,,1
+76,,0,0,NA,NA
+75,2,1,0d,,0d,,,,,25/04/2016,25/04/2016,,2
+76,,0,0,NA,NA
+75,3,1,0d,,0d,,,,,25/04/2016,25/04/2016,,3
+76,,0,0,NA,NA
+75,4,1,0d,,0d,,,,,25/04/2016,25/04/2016,,4
+76,,0,0,NA,NA
+70,Create a GUI for the server,5,1,$0.00,6d,0d,6d,0%,25/04/2016,02/05/2016,No,No,5,As Soon As Possible,Low,75,5
+75,2,1,6d,,0d,,,,,25/04/2016,02/05/2016,,2
+76,,0,0,NA,NA
+70,Polish / clean existing GUI,6,1,$0.00,10d,0d,10d,0%,02/05/2016,13/05/2016,No,No,6,As Soon As Possible,Highest,77,6
+75,2,1,10d,,0d,,,,,02/05/2016,13/05/2016,,2
+76,,0,0,NA,NA
+70,Remove hard-coded functionality in chat server,7,1,$0.00,3d,0d,3d,0%,20/04/2016,22/04/2016,No,No,7,As Soon As Possible,Highest,28,7
+75,1,1,3d,,0d,,,,,20/04/2016,22/04/2016,,1
+76,,0,0,NA,NA
+70,Create initial framework for GUI,8,1,$0.00,2d,0d,2d,0%,13/04/2016,14/04/2016,No,No,8,As Soon As Possible,Highest,4,8
+75,2,1,2d,,0d,,,,,13/04/2016,14/04/2016,,2
+76,,0,0,NA,NA
+70,Create grid for the lightbikes,9,1,$0.00,6d,0d,6d,0%,18/04/2016,25/04/2016,No,No,9,As Soon As Possible,Medium,10,9
+75,2,1,6d,,0d,,,,,18/04/2016,25/04/2016,,2
+76,,0,0,NA,NA
+75,4,1,6d,,0d,,,,,18/04/2016,25/04/2016,,4
+76,,0,0,NA,NA
+70,Ask for user settings in GUI for chat,10,1,$0.00,1d,0d,1d,0%,18/04/2016,18/04/2016,No,No,10,As Soon As Possible,Low,16,10
+75,2,1,1d,,0d,,,,,18/04/2016,18/04/2016,,2
+76,,0,0,NA,NA
+70,Optimize location of chat in GUI,11,1,$0.00,1d,0d,1d,0%,18/04/2016,18/04/2016,No,No,11,As Soon As Possible,Medium,5,11
+75,1,1,1d,,0d,,,,,18/04/2016,18/04/2016,,1
+76,,0,0,NA,NA
+70,Functioning menu bars,12,1,$0.00,1d,0d,1d,0%,18/04/2016,18/04/2016,No,No,12,As Soon As Possible,Medium,7,12
+75,2,1,1d,,0d,,,,,18/04/2016,18/04/2016,,2
+76,,0,0,NA,NA
+70,Implement bike movement,13,1,$0.00,3d,0d,3d,0%,21/04/2016,25/04/2016,No,No,13,As Soon As Possible,High,62,13
+71,This is going to include the actual movement of the bike as well as the logic for drawing the walls that the bike leaves behind.
+75,4,1,3d,,0d,,,,,21/04/2016,25/04/2016,,4
+76,,0,0,NA,NA
+70,Handling collisions,14,1,$0.00,5d,0d,5d,0%,25/04/2016,29/04/2016,No,No,14,As Soon As Possible,High,64,14
+75,4,1,5d,,0d,,,,,25/04/2016,29/04/2016,,4
+76,,0,0,NA,NA
+70,Begin working on Design Document,15,1,$0.00,2d,0d,2d,0%,09/05/2016,10/05/2016,No,No,15,As Soon As Possible,High,83,15
+75,1,1,2d,,0d,,,,,09/05/2016,10/05/2016,,1
+76,,0,0,NA,NA
+70,Write user documentation,16,1,$0.00,2d,0d,2d,0%,10/05/2016,11/05/2016,No,No,16,As Soon As Possible,Medium,87,16
+75,1,1,2d,,0d,,,,,10/05/2016,11/05/2016,,1
+76,,0,0,NA,NA
+70,Packaging client and server JARs,17,1,$0.00,3d,0d,3d,0%,09/05/2016,11/05/2016,No,No,17,As Soon As Possible,Highest,89,17
+75,1,1,3d,,0d,,,,,09/05/2016,11/05/2016,,1
+76,,0,0,NA,NA
+70,Apply JavaDocs comments to project,18,1,$0.00,1d,0d,1d,0%,12/05/2016,12/05/2016,No,No,18,As Soon As Possible,Low,91,18
+75,1,1,1d,,0d,,,,,12/05/2016,12/05/2016,,1
+76,,0,0,NA,NA
+70,Create a server GUI,19,1,$0.00,4d,0d,4d,0%,16/05/2016,19/05/2016,No,No,19,As Soon As Possible,Lowest,94,19
+75,2,1,4d,,0d,,,,,16/05/2016,19/05/2016,,2
+76,,0,0,NA,NA
+70,Make KeyListeners work,20,1,$0.00,3d,0d,3d,0%,09/05/2016,11/05/2016,No,No,20,As Soon As Possible,Highest,96,20
+75,2,1,3d,,0d,,,,,09/05/2016,11/05/2016,,2
+76,,0,0,NA,NA
+70,Integrate network with game logic,21,1,$0.00,3d,0d,3d,0%,09/05/2016,11/05/2016,No,No,21,As Soon As Possible,Highest,101,21
+75,3,1,3d,,0d,,,,,09/05/2016,11/05/2016,,3
+76,,0,0,NA,NA
+75,4,1,3d,,0d,,,,,09/05/2016,11/05/2016,,4
+76,,0,0,NA,NA
