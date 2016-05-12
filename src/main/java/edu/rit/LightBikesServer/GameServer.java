@@ -41,10 +41,15 @@ public class GameServer extends JFrame {
         new GameServer();
     }
 
+    /**
+     * Builds GUI
+     * Connects to players
+     */
     public GameServer() {
 
         setLayout(new BorderLayout());
 
+        //Add Labels to top
         JPanel topLables = new JPanel(new GridLayout(0, 3));
 
         JLabel player1Lable = new JLabel("Player 1");
@@ -61,6 +66,7 @@ public class GameServer extends JFrame {
 
         add(topLables, BorderLayout.NORTH);
 
+        //Add Text outputs to center
         JPanel centerTexts = new JPanel(new GridLayout(0, 3));
 
         JTextArea player1 = new JTextArea(35, 25);
@@ -91,6 +97,7 @@ public class GameServer extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        //Connect players to server
         ServerSocket ss = null;
         Socket s = null;
         try {
@@ -102,6 +109,7 @@ public class GameServer extends JFrame {
                 if(players.size() == 0) {
                     player1.append("Caught one - " + s + "\n");
                     temp = new Player(s, players.size() + 1, this, player1);
+                    player2.append("Waiting for client connections...\n");
                 } else if(players.size() == 1)  {
                     player2.append("Caught one - " + s + "\n");
                     temp = new Player(s, players.size() + 1, this, player2);
@@ -109,7 +117,6 @@ public class GameServer extends JFrame {
                 players.add(temp);
                 new Thread(temp).start();
                 acceptingPlayers = players.size() < MAX_CLIENTS;
-                player2.append("Waiting for client connections...");
             }
         }
         catch (IOException ioe) {
