@@ -9,7 +9,6 @@
 package edu.rit.LightBikesClient;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -53,8 +52,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
      * @param args Nothing
      */
     public static void main(String[] args){
-        //Collect initial settings
-        new LightBikes();//possibly send through size of game grid
+        new LightBikes();
     }
 
     /**
@@ -62,13 +60,9 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
      * Starts game logic classes
      */
     public LightBikes(){
-        //Connect to server/start game
-
         //Add JMenu bar
         JMenuBar menuBar = new JMenuBar();
             JMenu jmFile = new JMenu("File");
-                jmiConnect = new JMenuItem("Connect");
-            jmFile.add(jmiConnect);
                 jmiExit = new JMenuItem("Exit");
             jmFile.add(jmiExit);
         menuBar.add(jmFile);
@@ -88,9 +82,9 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         chatFrame.add(chat, BorderLayout.CENTER);
         chatFrame.add(msg, BorderLayout.SOUTH);
 
+        //Create Game grid and add to center
         gameGrid = new Grid();
         add(gameGrid, BorderLayout.CENTER);
-
 
         //Action listener for Menu items
         ActionListener menuListener = new ActionListener() {
@@ -98,13 +92,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
                 Object choice = ae.getSource();
 
-                if(choice == jmiConnect){//Connect to server
-                    if (chatClient.connect()) { //Chat server connection
-                        System.out.println("Chat connection successful.");
-                    } else {
-                        System.out.println("Chat connection unsuccessful.");
-                    }
-                }else if(choice == jmiExit){
+                if(choice == jmiExit){
                     System.exit(0);
                 }else if(choice == jmiAbout){
                     JOptionPane.showMessageDialog(null, "About");
@@ -112,7 +100,6 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
             }
         };
 
-        jmiConnect.addActionListener(menuListener);
         jmiExit.addActionListener(menuListener);
         jmiAbout.addActionListener(menuListener);
 
@@ -122,15 +109,21 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+
+        //Get connection info
         hostname = JOptionPane.showInputDialog(null, "Enter the server hostname:");
         username = JOptionPane.showInputDialog(null, "Enter your desired username:");
         gameGrid.connect(hostname, username);
         gameGrid.setFocusable(true);
-        gameGrid.requestFocus();
         gameGrid.addKeyListener(this);
         gameGrid.addMouseListener(this);
+        gameGrid.requestFocus();
+        chatClient.connect();
     }
 
+    /**
+    * Key listeners for controlling your bike
+     */
     @Override
     public void keyPressed(KeyEvent ke){
 
@@ -148,36 +141,30 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         }
     }
 
-    @Override
-    public void keyReleased(KeyEvent ke){
-    }
-
-    @Override
-    public void keyTyped(KeyEvent ke){
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
+    /**
+    * Gets focus back to the grid for keylistener
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         gameGrid.requestFocus();
     }
 
+    //Unused methods
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void keyReleased(KeyEvent ke){}
 
-    }
+    @Override
+    public void keyTyped(KeyEvent ke){}
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

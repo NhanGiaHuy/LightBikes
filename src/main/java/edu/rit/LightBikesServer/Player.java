@@ -64,7 +64,7 @@ public class Player implements Runnable {
         catch (Exception e) {
             e.printStackTrace();
         }
-        playerOutput.append("Debug: sending player id: " + playerID + "to " + s + "\n");
+        playerOutput.append("Sending player id: " + playerID + " to " + s + "\n");
         sendPlayerID();
 
         if (playerID == gameServer.MAX_CLIENTS) {
@@ -178,11 +178,8 @@ class Listener implements Runnable {
     */
     public void run() {
         try {
-            p.playerOutput.append("Listener starting...\n");
             while (true) {
-                //p.playerOutput.append("Waiting for stuffs from client\n");
                 String line = scan.nextLine();
-                //p.playerOutput.append("Parsing " + line + "\n");
                 parseCommands(line);
             }
         }
