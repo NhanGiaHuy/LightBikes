@@ -68,7 +68,6 @@ public class ChatServer {
         try {
             while (true) {
                 chatText.append("Waiting for a client.");
-
                 Socket sock = srvSock.accept();
                 chatText.append("Client found. " + sock);
                 clients.add(new ConnectedClient(sock));
