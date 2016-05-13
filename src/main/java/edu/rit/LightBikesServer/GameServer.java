@@ -39,6 +39,7 @@ public class GameServer extends JFrame {
 
     public static void main (String[] args) {
         new GameServer();
+
     }
 
     /**
@@ -46,7 +47,7 @@ public class GameServer extends JFrame {
      * Connects to players
      */
     public GameServer() {
-
+        System.out.println("Game server test");
         setLayout(new BorderLayout());
 
         //Add Labels to top
@@ -96,6 +97,8 @@ public class GameServer extends JFrame {
         setTitle("Light Bikes Server");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+        new ChatServer(chat);
 
         //Connect players to server
         ServerSocket ss = null;
