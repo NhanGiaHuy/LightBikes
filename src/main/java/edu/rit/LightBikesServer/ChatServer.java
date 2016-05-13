@@ -8,6 +8,7 @@
 
 package edu.rit.LightBikesServer;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -33,6 +34,7 @@ public class ChatServer {
     // Attributes
     private int clientCounter = 0;
     private ArrayList<ConnectedClient> clients;
+    private JTextArea chatText;
 
     /**
      * Main method that initializes the constructor.
@@ -40,14 +42,15 @@ public class ChatServer {
      * @param args String array of any arguments passed to program (not used in this program)
      */
     public static void main(String[] args) {
-        new ChatServer();
+        new ChatServer(new JTextArea());
     }
 
     /**
      *
      */
-    public ChatServer() {
-
+    public ChatServer(JTextArea chatText) {
+        this.chatText = chatText;
+        System.out.println("test");
         // Local variables
         ServerSocket srvSock = null;
 
@@ -64,10 +67,10 @@ public class ChatServer {
         // Create the socket and wait for a client to connect; once connected, run on its own thread
         try {
             while (true) {
-                System.out.println("Waiting for a client.");
+                chatText.append("Waiting for a client.");
 
                 Socket sock = srvSock.accept();
-                System.out.println("Client found. " + sock);
+                chatText.append("Client found. " + sock);
                 clients.add(new ConnectedClient(sock));
 
                 clients.get(clientCounter).start();
@@ -107,8 +110,8 @@ public class ChatServer {
                 br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             } catch (IOException e) {
-                System.out.println("An error occurred while opening the server socket.");
-                e.printStackTrace();
+                chatText.append("An error occurred while opening the server socket.");
+                //e.printStackTrace();
             }
         }
 
@@ -119,6 +122,7 @@ public class ChatServer {
          */
         public void send(String msg) {
             pw.println(msg);
+            chatText.append(msg);
             pw.flush();
         }
 
@@ -128,6 +132,7 @@ public class ChatServer {
          * @param msg
          */
         public void sendToAll(String msg) {
+            chatText.append(msg);
             for (ConnectedClient cc : clients) {
                 cc.send(msg);
             }
