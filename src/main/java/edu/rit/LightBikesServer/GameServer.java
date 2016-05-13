@@ -98,7 +98,7 @@ public class GameServer extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-        new ChatServer(chat);
+        new Thread(new ChatServer(chat)).start();
 
         //Connect players to server
         ServerSocket ss = null;

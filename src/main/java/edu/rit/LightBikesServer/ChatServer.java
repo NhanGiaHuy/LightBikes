@@ -8,8 +8,8 @@
 
 package edu.rit.LightBikesServer;
 
-import javax.swing.*;
 import java.io.*;
+import javax.swing.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -29,28 +29,20 @@ import java.util.ArrayList;
  * @author Timothy Endersby
  * @version 2016.04.11.v1
  */
-public class ChatServer {
+public class ChatServer implements Runnable {
 
     // Attributes
     private int clientCounter = 0;
     private ArrayList<ConnectedClient> clients;
-    private JTextArea chatText;
+    private JTextArea chat;
 
-    /**
-     * Main method that initializes the constructor.
-     *
-     * @param args String array of any arguments passed to program (not used in this program)
-     */
-    public static void main(String[] args) {
-        new ChatServer(new JTextArea());
+    public ChatServer(JTextArea chat) {
+        this.chat = chat;
     }
 
-    /**
-     *
-     */
-    public ChatServer(JTextArea chatText) {
-        this.chatText = chatText;
-        System.out.println("test");
+    @Override
+    public void run() {
+
         // Local variables
         ServerSocket srvSock = null;
 
@@ -67,11 +59,11 @@ public class ChatServer {
         // Create the socket and wait for a client to connect; once connected, run on its own thread
         try {
             while (true) {
-                chatText.append("Waiting for a client.");
+                System.out.println("Waiting for a client.");
 
                 Socket sock = srvSock.accept();
-                chatText.append("Client found. " + sock);
-                clients.add(new ConnectedClient(sock));
+                System.out.println("Client found. " + sock);
+                clients.add(new ConnectedClient(sock, chat));
 
                 clients.get(clientCounter).start();
                 clientCounter++;
@@ -98,20 +90,22 @@ public class ChatServer {
         private PrintWriter pw = null;
         private Socket sock;
         private String msg = "";
+        private JTextArea chat;
 
         /**
          *
          *
          * @param sock
          */
-        public ConnectedClient(Socket sock) {
+        public ConnectedClient(Socket sock, JTextArea chat) {
             this.sock = sock;
+            this.chat = chat;
             try {
                 br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             } catch (IOException e) {
-                chatText.append("An error occurred while opening the server socket.");
-                //e.printStackTrace();
+                System.out.println("An error occurred while opening the server socket.");
+                e.printStackTrace();
             }
         }
 
@@ -122,8 +116,11 @@ public class ChatServer {
          */
         public void send(String msg) {
             pw.println(msg);
-            chatText.append(msg);
             pw.flush();
+        }
+
+        public void addToChatWindow(String msg) {
+            chat.append(msg);
         }
 
         /**
@@ -132,7 +129,6 @@ public class ChatServer {
          * @param msg
          */
         public void sendToAll(String msg) {
-            chatText.append(msg);
             for (ConnectedClient cc : clients) {
                 cc.send(msg);
             }
@@ -152,6 +148,8 @@ public class ChatServer {
                     // Read from client
                     msg = br.readLine();
                     sendToAll(msg);
+                    // Show message in the chat window
+                    addToChatWindow(msg);
 
                 } catch (OptionalDataException e) {
                     System.out.println("OptionalDataException occurred.");
