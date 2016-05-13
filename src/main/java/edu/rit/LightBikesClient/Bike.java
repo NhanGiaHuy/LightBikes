@@ -60,47 +60,80 @@ public class Bike {
 		grid.repaint();
 	}
 
-	/*
-	* Info for each turn*() method.
-	* First line sets the array value in the direction bike is going to bike id.
-	* Second line changes bikes position.
-	* Try loop delays bike movement.
-	*/
-
+	/**
+	 * Sets the direction of this <code>Bike</code> to the <code>DIRECTION_WEST</code>
+	 * constant. <p> The direction will not be changed if set to the exact
+	 * opposite as <code>Bike</code>s are not allowed to go backwards along the
+	 * same path.
+	 */
 	public void turnWest(){
 		if(direction != DIRECTION_EAST){
 			direction = DIRECTION_WEST;
 		}
 	}
 
+	/**
+	 * Sets the direction of this <code>Bike</code> to the <code>DIRECTION_EAST</code>
+	 * constant. <p> The direction will not be changed if set to the exact
+	 * opposite as <code>Bike</code>s are not allowed to go backwards along the
+	 * same path.
+	 */
 	public void turnEast(){
 		if(direction != DIRECTION_WEST){
 			direction = DIRECTION_EAST;
 		}
 	}
 
+	/**
+	 * Sets the direction of this <code>Bike</code> to the <code>DIRECTION_SOUTH</code>
+	 * constant. <p> The direction will not be changed if set to the exact
+	 * opposite as <code>Bike</code>s are not allowed to go backwards along the
+	 * same path.
+	 */
 	public void turnSouth(){
 		if(direction != DIRECTION_NORTH){
 			direction = DIRECTION_SOUTH;
 		}
 	}
 
+	/**
+	 * Sets the direction of this <code>Bike</code> to the <code>DIRECTION_NORTH</code>
+	 * constant. <p> The direction will not be changed if set to the exact
+	 * opposite as <code>Bike</code>s are not allowed to go backwards along the
+	 * same path.
+	 */
 	public void turnNorth(){
 		if(direction != DIRECTION_SOUTH){
 			direction = DIRECTION_NORTH;
 		}
 	}
 
+	/**
+	 * Stops this <code>Bike</code> from moving any more by changing the
+	 * <code>gameState</code> to false, signalling a halt to the inner
+	 * <code>Movement</code> thread.
+	 */
 	public void stop(){
 		gameState = false;
 	}
 
+	/**
+	 * Checks the <code>grid</code> array to verify that a location is valid.
+	 * Locations that are both unoccupied (neither player has marked it) and
+	 * within the <code>grid</code>'s bounds are considered valid.
+	 * @param   x	The x-value of the coordinate to check.
+	 * @param   y	The y-value of the coordinate to check.
+	 * @return  Returns <code>true</code> if the location is valid,
+	 * <code>false</code> if not.
+	 */
 	public boolean checkLocation(int x, int y) {
 		return x > 0 && x < gridArray.length && y > 0 && y < gridArray[0].length && gridArray[x][y] == 0;
 	}
 
 	/**
-	 * Update the location of the bike
+	 * Registers the current location of this <code>Bike</code> as specified in its
+	 * <code>xPosition</code> and <code>yPosition</code> variables witin the
+	 * <code>grid</code> array.
 	 */
 	public void updateLocation() {
 		gridArray[xPosition][yPosition] = player;
@@ -118,14 +151,27 @@ public class Bike {
 		updateLocation();
 	}
 
+	/**
+	 * Gets the current <code>gameState</code> of this <code>Bike</code> object.
+	 * @return Returns <code>true</code> if the game is still in play,
+	 * <code>false</code> if not.
+	 */
 	public boolean getGameState(){
 		return gameState;
 	}
 
+	/**
+	 * Gets the current x value of the coordinates of this <code>Bike</code>.
+	 * @return The current x value.
+	 */
 	public int getXpos() {
 		return xPosition;
 	}
 
+	/**
+	 * Gets the current y value of the coordinates of this <code>Bike</code>.
+	 * @return The current y value.
+	 */
 	public int getYpos() {
 		return yPosition;
 	}
@@ -138,7 +184,15 @@ public class Bike {
 		new Thread(new Movement()).start();
 	}
 
-
+	/**
+	 * Runnable inner class which faciliates the systematic movement of the
+	 * <code>Bike</code> in the GUI based on the time delay set in the
+	 * <code>Bike</code>, the value of the <code>Bike</code> object's
+	 * <code>direction</code>, and the <code>gameState</code>. The
+	 * <code>Movement</code> thread will complete and exit once the
+	 * <code>gameState</code> has been set to false.
+	 *
+	 */
 	class Movement implements Runnable {
 
 		@Override
