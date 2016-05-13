@@ -59,12 +59,10 @@ public class ChatServer implements Runnable {
         // Create the socket and wait for a client to connect; once connected, run on its own thread
         try {
             while (true) {
-                System.out.println("Waiting for a client.");
                 chat.append("Waiting for a client.");
                 Socket sock = srvSock.accept();
                 System.out.println("Client found. " + sock);
                 clients.add(new ConnectedClient(sock, chat));
-
                 clients.get(clientCounter).start();
                 clientCounter++;
             }
@@ -104,8 +102,8 @@ public class ChatServer implements Runnable {
                 br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             } catch (IOException e) {
-                System.out.println("An error occurred while opening the server socket.");
-                e.printStackTrace();
+                //System.out.println("An error occurred while opening the server socket.");
+                //e.printStackTrace();
             }
         }
 
