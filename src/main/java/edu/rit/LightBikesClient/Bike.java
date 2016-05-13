@@ -37,17 +37,37 @@ public class Bike {
 	public static final int DIRECTION_EAST = 1;
 	public static final int DIRECTION_SOUTH = 2;
 	public static final int DIRECTION_WEST = 3;
+	/**
+	 * The amount of time in milliseconds between each step for movement.
+	 */
+	private static final int DELAY_IN_MILLS = 80;
 
 	public int xPosition;
 	public int yPosition;
 	public int[][] gridArray;
 	public int player;
 	private int direction;
-	private static final int DELAY_IN_MILLS = 80;
 	public boolean gameState;
 	private Grid grid;
 	private NetworkConnector connector;
 
+	/**
+	 * Creates a new <code>Bike</code> object, setting default values and adding
+	 * the bike to the specified starting location.
+	 * @param  _xPosition 			The starting x coordinate to place the bike
+	 *                       		on the grid.
+	 * @param  _yPosition 			The starting x coordinate to place the bike
+	 *                       		on the grid.
+	 * @param  _gridArray 			The grid array to keep track of locations of
+	 *                       		different <code>Bike</code> objects.
+	 * @param  _player 				The player id to use. This value is what
+	 *                     			is entered in the grid array when moving.
+	 * @param  initialDirection 	The initial direction the bike should head
+	 *                           	when the <code>Movement</code> thread is
+	 *                           	started.
+	 * @param  _grid 				The <code>Grid</code> object controlling the
+	 *                   			different <code>Bike</code> objects.
+	 */
 	public Bike(int _xPosition, int _yPosition, int[][] _gridArray, int _player, int initialDirection, Grid _grid){
 		direction = initialDirection;
 		xPosition = _xPosition;
@@ -123,7 +143,7 @@ public class Bike {
 	 * within the <code>grid</code>'s bounds are considered valid.
 	 * @param   x	The x-value of the coordinate to check.
 	 * @param   y	The y-value of the coordinate to check.
-	 * @return  Returns <code>true</code> if the location is valid,
+	 * @return  <code>True</code> if the location is valid,
 	 * <code>false</code> if not.
 	 */
 	public boolean checkLocation(int x, int y) {

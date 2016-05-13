@@ -17,13 +17,14 @@ import java.util.Vector;
 
 
 /**
- * GameServer.java
+ * GameServer.java <p>
  *
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
+ * Assignment: Final Project <p>
+ * Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+ * Professor: Michael Floeser <p>
  *
- *
+ * Main game server to facilitate multiplayer <code>LightBikes</code> games.
+ * Each <code>GameServer</code> instance represents one game and.
  *
  * @author Felice Aprile
  * @author Justin W. Flory
@@ -32,11 +33,28 @@ import java.util.Vector;
  * @version 2016.04.11.v1
  */
 public class GameServer extends JFrame {
+    /**
+     * Constant to define the port used for gameplay. This port should be the
+     * same as the one configured in <code>LightBikesClient.NetworkConnector</code>
+     * class.
+     */
     private static final int PORT = 8888;
+
+    /**
+     * Constant to define the max number of players allowed per game.
+     */
     public static final int MAX_CLIENTS = 2;
+
     private boolean acceptingPlayers = true;
+    /**
+     * <code>Vector</code> to keep track of connected players.
+     */
     private Vector<Player> players = new Vector<Player>();
 
+    /**
+     * Main method to kickstart the <code>GameServer</code>.
+     * @param args Unused
+     */
     public static void main (String[] args) {
         new GameServer();
 

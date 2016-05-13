@@ -15,14 +15,14 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- * ChatServer.java
+ * ChatServer.java <p>
  *
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
+ * Assignment: Final Project <p>
+ * Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+ * Professor: Michael Floeser <p>
  *
  * Creates a runnable chat server to process and push chat messages sent from
- * connected clients.
+ * connected clients. <p>
  *
  * @author Felice Aprile
  * @author Justin W. Flory
