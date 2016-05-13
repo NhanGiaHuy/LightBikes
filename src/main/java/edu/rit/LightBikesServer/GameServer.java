@@ -144,16 +144,31 @@ public class GameServer extends JFrame {
         }
     }
 
+    /**
+     * Pushes a string to all clients connected to this server.
+     * @param commandString The string to send.
+     */
     public void pushToAll(String commandString) {
         for (Player player : players) {
             player.push(commandString);
         }
     }
 
+    /**
+     * Pushes a message to a single client.
+     * @param  playerID         The id of the player to send to.
+     * @param  commandString    Command-value string to send to the specified
+     *                          player.
+     */
     public void pushToPlayer(int playerID, String commandString) {
         players.get(playerID-1).push(commandString);
     }
 
+    /**
+     * Push a message to all clients except for the specified player.
+     * @param  playerID         The player ID to avoid
+     * @param  commandString    The command-value string to push to players.
+     */
     public void pushToOthers(int playerID, String commandString) {
         for (Player player : players) {
             if (player.getPlayerID() != playerID) {
@@ -162,10 +177,20 @@ public class GameServer extends JFrame {
         }
     }
 
+    /**
+     * Creates a command-value string with given parameters.
+     * @param   command The command to use when making the command-value string.
+     * @param   value   The value to use when making the command-value string.
+     * @return  The generated command-value string.
+     */
     private String makeCommandString(String command, String value) {
         return command + ":" + value + ";";
     }
 
+    /**
+     * Starts the game by sending a start message to all players connected to
+     * this <code>GameServer</code>
+     */
     public void startGame() {
         pushToAll(makeCommandString("rsp-game-start", "true"));
     }
