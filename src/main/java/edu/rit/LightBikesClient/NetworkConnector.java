@@ -13,13 +13,18 @@ import java.net.*;
 import java.util.Scanner;
 
 /**
-* NetworkConnector.java
+* NetworkConnector.java <p>
 *
-* Assignment: Final Project
-* Class: Rochester Institute of Technology, ISTE-121.01, 2155
-* Professor: Michael Floeser
+* Assignment: Final Project <p>
+* Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+* Professor: Michael Floeser <p>
 *
-*
+* This class serves to provide network communication between the
+* <code>LightBikes</code> client and <code>LightBikes</code> server. A flexible,
+*  extendable API is provided in order to send and process different commands
+*  and data between the clients and server. <code>NetworkConnector</code> also
+*  creates a threaded <code>Listener</code> object which serves to simply read
+*  and process data sent by the server.
 *
 * @author Felice Aprile
 * @author Justin W. Flory
@@ -30,22 +35,43 @@ import java.util.Scanner;
 public class NetworkConnector {
 
     //Directional constants
+
+    /**
+     * Constant to represent logical north.
+     */
     public static final int DIRECTION_NORTH = 0;
+
+    /**
+     * Constant to represent logical east.
+     */
     public static final int DIRECTION_EAST = 1;
+
+    /**
+     * Constant to represent logical south.
+     */
     public static final int DIRECTION_SOUTH = 2;
+
+    /**
+     * Constant to represent logical west.
+     */
     public static final int DIRECTION_WEST = 3;
 
+    /**
+     * Constant to define what port to connect to the <code>GameServer</code>.
+     */
     private static final int PORT = 8888;
+
     private String hostname;
     private String username;
-    private int userID;
+    private int userID = -1;
     private Socket s;
     private PrintWriter out;
     private String[] otherPlayers;
     private Grid grid;
 
     /**
-    * Creates a new connection to the server
+    * Creates a new <code>NetworkConnector</code> instance and connects to the
+    * to the <code>LightBikes</code> server specified with <code>hostname</code>.
     * @param hostname   The hostname of the server
     * @param username   The username to send the server
     * @param grid       The grid object to call methods in
@@ -58,7 +84,9 @@ public class NetworkConnector {
     }
 
     /**
-    * Connect to the server
+    * Connects to the <code>LightBikes</code> server with <code>username</code>
+    * and <code>hostname</code> values set in the constructor on the port
+    * defined by the <code>PORT</code> constant.
     */
     public void connect() {
         try {
@@ -76,8 +104,8 @@ public class NetworkConnector {
     }
 
     /**
-    * Change this client's username on the server
-    * @param username The username to send.
+    * Register a change of <code>username</code> with the server.
+    * @param username The username to change to.
     */
     public void sendUsername(String username) {
         sendCommand("set-username", username);
@@ -85,9 +113,9 @@ public class NetworkConnector {
 
 
     /**
-    * Send the current x,y position of the bike.
-    * @param x The X-coordinate of the bike
-    * @param y The Y-coordinate of the bike
+    * Send the current x,y position of the user-controlled bike.
+    * @param x The X-coordinate of the bike.
+    * @param y The Y-coordinate of the bike.
     */
     public void sendLocation(int x, int y) {
         sendCommand("set-location", ("" + x + "," + y));
@@ -121,7 +149,7 @@ public class NetworkConnector {
 
 
     /**
-    * Creates and sends a command string to server.
+    * Creates and sends a command-value string to the <code>LightBikes</code> server.
     * @param  command  The command to send
     * @param  value    The value to send
     */
@@ -130,7 +158,7 @@ public class NetworkConnector {
     }
 
     /**
-    * Creates and sends a command string to server.
+    * Creates and sends a command-value string to the <code>LightBikes</code> server.
     * @param  command  The command to send
     * @param  value    The value to send
     */
@@ -139,7 +167,8 @@ public class NetworkConnector {
     }
 
     /**
-    * Generates a properly formatted command string to be sent to the server
+    * Generates a properly formatted command-value string to be sent to the
+    * <code>LightBikes</code> server.
     * @param   command The command to be contained in the command string
     * @param   value   The value to be contained in the command string
     * @return  Generated command string
@@ -149,8 +178,9 @@ public class NetworkConnector {
     }
 
     /**
-    * Process a command string sent back by the server.
-    * @param cmdString The command string to be processed
+    * Process a command-value string sent back by the <code>LightBikes</code>
+    * server.
+    * @param cmdString The command-value string to be processed.
     */
     public void processCommand(String cmdString) {
         String[] temp = cmdString.split(":");
@@ -186,7 +216,10 @@ public class NetworkConnector {
     // Methods to process different commands from the server
 
     /**
-    * Starts the game within the Grid object. UserID must already set
+    * Calls the <code>startGame</code> method within the <code>Grid</code>
+    * object. UserID must previously set via a call to the <code>setUserID</code>
+    * method.
+    * @param value Unused.
     */
     private void startGame(String value) {
         //System.out.println("Startgame network connector");
@@ -194,8 +227,9 @@ public class NetworkConnector {
     }
 
     /**
-    * Process the list of usernames sent by the server
-    * @param csvUsers A string of comma-serparated usenames;
+    * Process the list of usernames sent by the <code>LightBikes</code> server
+    * and store them for later use.
+    * @param csvUsers A string of comma-serparated usenames.
     */
     private void setPlayers(String value) {
         otherPlayers = value.split(",");
@@ -210,18 +244,34 @@ public class NetworkConnector {
         grid.getServerBike().setLocation(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
     }
 
+    /**
+     * Sets the user ID of this <code>Bike</code> object. The user ID is used to
+     * determine the color and starting location of a <code>Bike</code> within
+     * the <code>Grid</code>.
+     * @param value The userID to set
+     */
     private void setUserID(String value) {
         userID = Integer.parseInt(value);
     }
 
+    /**
+     * Get the userID value of this <code>Bike</code> object. The userID is set
+     * by default to -1 until set by the server.
+     * @return The userID assigned by the server.
+     */
     public int getUserID(){
     	return userID;
     }
 
+    /**
+     * Runnable inner class which simply opens the <code>Socket</code>'s
+     * <code>InputStream</code> and waits for the server to send data, processing
+     * it as it comes.
+     */
     class Listener implements Runnable {
 
-        Scanner scan;
-        Socket s;
+        private Scanner scan;
+        private Socket s;
 
         /**
         * Creates a listener bound to a port
@@ -239,9 +289,12 @@ public class NetworkConnector {
         }
 
         /**
-        * Don't call directly -- use threadObj.start()
-        * Runs for the life of the connection, waiting to recieve messages
-        */
+         * Core method of the <code>Listener</code> object, waiting
+         * for data to be received from the server. Once opened, it will run for
+         * the life of the connection unless the thread is killed. <p>
+         * This method should not be called directly, as it is intended to run
+         * as a separate thread.
+         */
         public void run() {
             try {
                 while (true) {
