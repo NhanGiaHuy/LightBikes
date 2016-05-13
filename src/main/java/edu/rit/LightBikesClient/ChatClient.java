@@ -41,8 +41,8 @@ public class ChatClient {
     /**
      *
      */
-    public ChatClient(String username, JTextArea chat, JTextField newMsg) {
-        this.username = username;
+    public ChatClient(JTextArea chat, JTextField newMsg) {
+        username = "";
         this.chat = chat;
         this.newMsg = newMsg;
 
@@ -57,9 +57,10 @@ public class ChatClient {
      * chat server connection. This method helps ensure that the client successfully connects to the chat server even
      * when it may not be running.
      */
-    public boolean connect() {
+    public boolean connect(String host, String username) {
+        this.username = username;
         try {
-            sock = new Socket("localhost", 6667);
+            sock = new Socket(host, 6667);
             br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
 

@@ -60,6 +60,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
     * Starts game logic classes
     */
     public LightBikes(){
+
         //Add JMenu bar
         JMenuBar menuBar = new JMenuBar();
         JMenu jmFile = new JMenu("File");
@@ -76,7 +77,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         JPanel chatFrame = new JPanel(new BorderLayout());
         JTextArea chat = new JTextArea(25,60);
         JTextField msg = new JTextField(25);
-        ChatClient chatClient = new ChatClient("UsernameThatNeedsToBeHandled", chat, msg);
+        ChatClient chatClient = new ChatClient(chat, msg);
 
         add(chatFrame, BorderLayout.EAST);
         chatFrame.add(chat, BorderLayout.CENTER);
@@ -118,7 +119,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         gameGrid.addKeyListener(this);
         gameGrid.addMouseListener(this);
         gameGrid.requestFocus();
-        chatClient.connect();
+        chatClient.connect(hostname, username);
     }
 
     /**
