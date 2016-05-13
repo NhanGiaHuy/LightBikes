@@ -59,8 +59,12 @@ public class ChatServer implements Runnable {
         // Create the socket and wait for a client to connect; once connected, run on its own thread
         try {
             while (true) {
+<<<<<<< HEAD
                 System.out.println("Waiting for a client.");
 
+=======
+                chatText.append("Waiting for a client.");
+>>>>>>> a7f602137ce1961fa55c3fbec4be39188147e6e3
                 Socket sock = srvSock.accept();
                 System.out.println("Client found. " + sock);
                 clients.add(new ConnectedClient(sock, chat));
