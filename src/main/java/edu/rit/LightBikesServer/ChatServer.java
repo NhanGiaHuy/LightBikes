@@ -59,9 +59,9 @@ public class ChatServer implements Runnable {
         // Create the socket and wait for a client to connect; once connected, run on its own thread
         try {
             while (true) {
-                chat.append("Waiting for a client.");
+                chat.append("Waiting for a client.\n");
                 Socket sock = srvSock.accept();
-                System.out.println("Client found. " + sock);
+                chat.append("Client found. \n" + sock);
                 clients.add(new ConnectedClient(sock, chat));
                 clients.get(clientCounter).start();
                 clientCounter++;
@@ -118,7 +118,7 @@ public class ChatServer implements Runnable {
         }
 
         public void addToChatWindow(String msg) {
-            chat.append(msg);
+            chat.append(msg + "\n");
         }
 
         /**
