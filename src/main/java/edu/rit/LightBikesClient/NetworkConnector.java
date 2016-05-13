@@ -232,7 +232,7 @@ public class NetworkConnector {
     /**
     * Process the list of usernames sent by the <code>LightBikes</code> server
     * and store them for later use.
-    * @param csvUsers A string of comma-serparated usenames.
+    * @param value A string of comma-serparated usenames.
     */
     private void setPlayers(String value) {
         otherPlayers = value.split(",");
@@ -279,7 +279,6 @@ public class NetworkConnector {
         /**
         * Creates a listener bound to a port
         * @param  s The socket open with the server
-        * @return   Nothing
         */
         public Listener(Socket s) {
             this.s = s;

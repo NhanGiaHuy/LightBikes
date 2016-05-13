@@ -42,8 +42,13 @@ public class Player implements Runnable {
     public JTextArea playerOutput;
 
     /**
-    * Create a new subserver for a Player
-    * @param  s The socket the client is connected to
+    * Create a new subserver for a connected player.
+    * @param  s             The socket the player is connected to.
+    * @param playerID       The ID set of this player, as set by the <code>GameServer</code>.
+    * @param gameServer     The reference to the <code>GameServer</code> instance
+    *                       handling all the player connections.
+    * @param playerOutput   The <code>GameServer</code> GUI component where
+    *                       interactions with this player are recorded.
     */
     public Player(Socket s, int playerID, GameServer gameServer, JTextArea playerOutput) {
         this.s = s;
@@ -53,8 +58,12 @@ public class Player implements Runnable {
     }
 
     /**
-    * Don't call directly -- use thread.start()
-    * Initializes I/O for the client connection and rolling out the welcome wagon
+    * Initializes I/O for the client connection and initial communication such
+    * as sending over the player's id assigned by the <code>GameServer</code>.
+    * <p> <code>Player</code> is threaded, and therefore it is recommended to
+    * call the <code>start</code> method of <code>Thread</code> created with
+    * this <code>Player</code> object instead of calling the <code>run</code>
+    * method directly.
     */
     public void run() {
         try {
@@ -165,7 +174,7 @@ public class Player implements Runnable {
 
     /**
      * Gets the username of this <code>Player</code>.
-     * @returns The username.
+     * @return The username.
      */
     public String getUsername() {
         return username;

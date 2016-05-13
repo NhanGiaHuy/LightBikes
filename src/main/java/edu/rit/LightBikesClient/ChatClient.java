@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
+* Copyright (c) 2016 Felice Aprile, Justin W. Flory, Malcolm Jones, Timothy Endersby
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 package edu.rit.LightBikesClient;
 
@@ -14,20 +14,22 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * ChatClient.java
- *
- * Assignment: Final Project
- * Class: Rochester Institute of Technology, ISTE-121.01, 2155
- * Professor: Michael Floeser
- *
- *
- *
- * @author Felice Aprile
- * @author Justin W. Flory
- * @author Malcolm Jones
- * @author Timothy Endersby
- * @version 2016.04.11.v1
- */
+* ChatClient.java <p>
+*
+* Assignment: Final Project <p>
+* Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+* Professor: Michael Floeser <p>
+*
+* Creates a client for interacting with chat services to accompany the game.
+* The chat directly integrates with the GUI and is instantiated by the
+* <code>LightBikes</code> class.
+*
+* @author Felice Aprile
+* @author Justin W. Flory
+* @author Malcolm Jones
+* @author Timothy Endersby
+* @version 2016.04.11.v1
+*/
 public class ChatClient {
 
     // Attributes
@@ -39,8 +41,11 @@ public class ChatClient {
     private String username;
 
     /**
-     *
-     */
+    *	Creates a new client for chat services.
+    *	@param chat      The <code>JTextArea</code> to post new messages from
+    *	                 other players to.
+    *	@param newMsg    The initial message to send to the server.
+    */
     public ChatClient(JTextArea chat, JTextField newMsg) {
         username = "";
         this.chat = chat;
@@ -54,10 +59,15 @@ public class ChatClient {
     }
 
     /**
-     * Initial connection to the chat server. This command is to be called by the menu bar item to initialize the
-     * chat server connection. This method helps ensure that the client successfully connects to the chat server even
-     * when it may not be running.
-     */
+    * Initial connection to the chat server. This command is to be called by
+    * the menu bar item to initialize the chat server connection. This method
+    * helps ensure that the client successfully connects to the chat server even
+    * when it may not be running.
+    *
+    * @param host      The hostname of the chat server.
+    * @param username  The desired username to use for chatting.
+    * @return True on a successful connection, false otherwise.
+    */
     public boolean connect(String host, String username) {
         this.username = username;
         try {
@@ -81,17 +91,18 @@ public class ChatClient {
     }
 
     /**
-     *
-     * @param msg
-     */
+    * Sends a message to the chat server.
+    * @param msg The message to send.
+    */
     public void send(String msg) {
         pw.println(msg);
         pw.flush();
     }
 
     /**
-     *
-     */
+    * Closes the socket connection with the chat server as well as the different
+    * datastreams associated with it.
+    */
     public void closeSocket() {
         try {
             pw.println("s7XUH94y");
@@ -104,7 +115,15 @@ public class ChatClient {
         }
     }
 
+    /**
+     * Runnable inner class that listens for messages from the chat server.
+     */
     class ReceiveMessages extends Thread {
+
+        /**
+         * Runs the listener, running indefinitely until the connection is closed
+         * by the client or the server.
+         */
         public void run() {
             while (true) {
                 try {

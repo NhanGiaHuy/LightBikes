@@ -21,7 +21,8 @@ import java.util.ArrayList;
  * Class: Rochester Institute of Technology, ISTE-121.01, 2155
  * Professor: Michael Floeser
  *
- *
+ * Creates a runnable chat server to process and push chat messages sent from
+ * connected clients.
  *
  * @author Felice Aprile
  * @author Justin W. Flory
@@ -36,10 +37,19 @@ public class ChatServer implements Runnable {
     private ArrayList<ConnectedClient> clients;
     private JTextArea chat;
 
+    /**
+     * Creates a new <code>ChatServer</code> instance.
+     * @param  chat The <code>JTextArea</code> to append chat messages to.
+     */
     public ChatServer(JTextArea chat) {
         this.chat = chat;
     }
 
+    /**
+     * Starts the chat server and listens for client connections. The server runs
+     * until the thread is interrupted, creating a separate threaded
+     * <code>ConnectedClient</code> instance for each client that connects.
+     */
     @Override
     public void run() {
 
@@ -78,7 +88,8 @@ public class ChatServer implements Runnable {
     }
 
     /**
-     *
+     *	Threaded inner class to handle each client connected to the main
+     *	<code>ChatServer</code>.
      */
     class ConnectedClient extends Thread {
 
@@ -91,9 +102,10 @@ public class ChatServer implements Runnable {
         private JTextArea chat;
 
         /**
-         *
-         *
-         * @param sock
+         * Creates a new <code>ConnectedClient</code> and opens in/out buffers
+         * in order to send/receive data from the client.
+         * @param sock The socket the client is connected to.
+         * @param chat The <code>JTextArea</code> to output chat messages to.
          */
         public ConnectedClient(Socket sock, JTextArea chat) {
             this.sock = sock;
@@ -102,29 +114,33 @@ public class ChatServer implements Runnable {
                 br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             } catch (IOException e) {
-                //System.out.println("An error occurred while opening the server socket.");
-                //e.printStackTrace();
+
             }
         }
 
         /**
+         * Sends a message to the client associated with this
+         * <code>ConnectedClient</code> object.
          *
-         *
-         * @param msg
+         * @param msg The message to be sent.
          */
         public void send(String msg) {
             pw.println(msg);
             pw.flush();
         }
 
+        /**
+         * Writes a message out to the server GUI window.
+         * @param msg The message to be written.
+         */
         public void addToChatWindow(String msg) {
             chat.append(msg + "\n");
         }
 
         /**
+         * Sends a message to all clients connected to the <code>ChatServer</code>.
          *
-         *
-         * @param msg
+         * @param msg The message to send.
          */
         public void sendToAll(String msg) {
             for (ConnectedClient cc : clients) {
@@ -133,8 +149,12 @@ public class ChatServer implements Runnable {
         }
 
         /**
-         *
+         * Runs a listener to read messages from the associated client, forwarding
+         * them and printing them out as appropriate. As <code>ConnectedClient</code>
+         * is threaded, it is not recommended to call this <code>run</code> method
+         * directly, instead using the <code>Thread.start</code> method.
          */
+        @Override
         public void run() {
             while (!msg.equalsIgnoreCase(null)) {
                 try {

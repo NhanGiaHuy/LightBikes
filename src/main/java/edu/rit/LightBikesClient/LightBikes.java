@@ -144,6 +144,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
     * Returns the focus of the GUI to the grid.
+    * @param e Generated <code>MouseEvent</code>.
     */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -152,7 +153,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
     * Unused.
-    * @param ke KeyEvent
+    * @param ke Generated <code>KeyEvent</code>.
     */
     @Override
     public void keyReleased(KeyEvent ke){
@@ -161,7 +162,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
     * Unused.
-    * @param ke KeyEvent
+    * @param ke Generated <code>KeyEvent</code>.
     */
     @Override
     public void keyTyped(KeyEvent ke){
@@ -170,7 +171,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
     * Unused.
-    * @param ke KeyEvent
+    * @param e Generated <code>MouseEvent</code>.
     */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -179,7 +180,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
      * Unused.
-     * @param e MouseEvent
+     * @param e Generated <code>MouseEvent</code>.
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -188,7 +189,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
      * Unused.
-     * @param e MouseEvent
+     * @param e Generated <code>MouseEvent</code>.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -197,7 +198,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
      * Unused.
-     * @param e MouseEvent
+     * @param e Generated <code>MouseEvent</code>.
      */
     @Override
     public void mouseExited(MouseEvent e) {
