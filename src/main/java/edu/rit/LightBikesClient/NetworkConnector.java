@@ -8,6 +8,7 @@
 
 package edu.rit.LightBikesClient;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -98,7 +99,8 @@ public class NetworkConnector {
         }
         catch (Exception e) {
             //e.printStackTrace();
-
+            JOptionPane.showMessageDialog(null, "Cannot connect to server, restart program");
+            System.exit(0);
         }
         //System.out.println("Debug: connected, sending username");
         sendUsername(username);

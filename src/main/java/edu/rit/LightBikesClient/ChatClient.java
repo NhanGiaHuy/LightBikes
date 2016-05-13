@@ -44,6 +44,7 @@ public class ChatClient {
     public ChatClient(JTextArea chat, JTextField newMsg) {
         username = "";
         this.chat = chat;
+        chat.setEditable(false);
         this.newMsg = newMsg;
 
         newMsg.addActionListener(actionEvent -> {
@@ -71,10 +72,10 @@ public class ChatClient {
 
             return true;
         } catch (UnknownHostException e) {
-            chat.append("Cannot find server with specified IP and/or port. Is a firewall running?\n");
+            chat.append("Cannot find chat server with specified IP and/or port. Is a firewall running?\n");
             return false;
         } catch (IOException e) {
-            chat.append("Unable to connect. Is the server running?\n");
+            chat.append("Unable to connect to chat server. Is the server running?\n");
             return false;
         }
     }
