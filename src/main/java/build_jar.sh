@@ -1,3 +1,5 @@
+echo "Cleaning out any existing JARs..."
+rm *.jar
 echo "Building JAR files..."
 jar cfm LightBikesClient.jar MANIFEST-CLIENT.MF edu/rit/LightBikesClient/*.class
 jar cfm LightBikesServer.jar MANIFEST-SERVER.MF edu/rit/LightBikesServer/*.class
