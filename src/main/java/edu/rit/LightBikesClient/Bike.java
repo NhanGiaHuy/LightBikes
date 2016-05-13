@@ -195,6 +195,13 @@ public class Bike {
 	 */
 	class Movement implements Runnable {
 
+		/**
+		 * Begins movement of the this <code>Bike</code> object within the GUI,
+		 * moving the <code>Bike</code> at the interval specifed in
+		 * <code>Bike.DELAY_IN_MILLIS</code> and registering the changes with
+		 * both the <code>Grid</code> and the <code>NetworkConnector</code>
+		 * created by <code>Grid</code>.
+		 */
 		@Override
 		public void run() {
 			NetworkConnector connector = grid.getConnector();

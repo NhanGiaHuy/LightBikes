@@ -16,13 +16,15 @@ import java.util.Scanner;
 
 
 /**
-* Player.java
+* Player.java <p>
 *
-* Assignment: Final Project
-* Class: Rochester Institute of Technology, ISTE-121.01, 2155
-* Professor: Michael Floeser
+* Assignment: Final Project <p>
+* Class: Rochester Institute of Technology, ISTE-121.01, 2155 <p>
+* Professor: Michael Floeser <p>
 *
-*
+* Runnable class for each client connected to the <code>GameServer</code>.
+* <code>Player</code> includes a threaded <code>Listener</code> inner class to
+* process data sent by its assigned client.
 *
 * @author Felice Aprile
 * @author Justin W. Flory
@@ -43,7 +45,6 @@ public class Player implements Runnable {
     /**
     * Create a new subserver for a Player
     * @param  s The socket the client is connected to
-    * @return   Nothing
     */
     public Player(Socket s, int playerID, GameServer gameServer, JTextArea playerOutput) {
         this.s = s;
@@ -89,22 +90,49 @@ public class Player implements Runnable {
         }
     }
 
+    /**
+    * Make and pushes out a command-value string to this client.
+    * @param command    The command to use when making the command-value string.
+    * @param value      The value to use when making the command-value string.
+    */
     public void push(String command, String value) {
         push(makeCommandString(command, value));
     }
 
+    /**
+    * Make and pushes out a command-value string to the other clients connected
+    * to the <code>GameServer</code>.
+    * @param command    The command to use when making the command-value string.
+    * @param value      The value to use when making the command-value string.
+    */
     private void pushToOthers(String command, String value) {
         gameServer.pushToOthers(playerID, makeCommandString(command, value));
     }
 
+    /**
+    * Make and pushes out a command-value string to ALL clients connected
+    * to the <code>GameServer</code>.
+    * @param command    The command to use when making the command-value string.
+    * @param value      The value to use when making the command-value string.
+    */
     private void pushToAll(String command, String value) {
         gameServer.pushToAll(makeCommandString(command, value));
     }
 
+    /**
+     * Makes a command-value string with the given values.
+     * @param   command The command to use.
+     * @param   value   The value to use.
+     * @return  The generated command-value string.
+     */
     private String makeCommandString(String command, String value) {
         return command + ":" + value + ";";
     }
 
+    /**
+     * Processes a command-value string sent by the client.
+     * @param cmdString The command-value string sent.
+     */
     public void processCommand(String cmdString) {
         String[] temp = cmdString.split(":");
         String command = temp[0];
@@ -128,18 +156,35 @@ public class Player implements Runnable {
         }
     }
 
+    /**
+     * Sets the username of this <code>Player</code>.
+     * @param username The username desired.
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Gets the username of this <code>Player</code>.
+     * @returns The username.
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Gets the <code>playerID</code>. Player IDs are assigned by the
+     * <code>GameServer</code> on creation of the player object.
+     * @return The player id of this <code>Player</code>.
+     */
     public int getPlayerID() {
         return playerID;
     }
 
+    /**
+     * Pushes the <code>playerID</code> of this <code>Player</code> to the
+     * client connected.
+     */
     public void sendPlayerID() {
         push("rsp-user-id", ""+playerID);
     }
@@ -147,7 +192,7 @@ public class Player implements Runnable {
 }
 
 /**
-* Runnable Listener listens and processes messages from a client
+* Runnable <code>Listener</code> listens and processes messages from the client
 */
 class Listener implements Runnable {
 
@@ -156,9 +201,11 @@ class Listener implements Runnable {
     Player p;
 
     /**
-    * Creates new listener for a client application
-    * @param  s The socket the client is bound to
-    * @return   Nothing
+    * Creates new <code>Listener</code> to bind to the <code>Socket</code>
+    * and receive all incoming data.
+    * @param  s The <code>Socket</code> the client is bound to.
+    * @param  p The <code>Player</code> that this <code>Listener</code> is
+    * processing commands for.
     */
     public Listener(Socket s, Player p) {
         p.playerOutput.append("Listener started for " + s + "\n");
@@ -173,8 +220,10 @@ class Listener implements Runnable {
     }
 
     /**
-    * Don't call directly -- use thread.start()
-    * Listens for messages until the client disconnects.
+    * Starts this <code>Listener</code> and runs for the lifetime of the
+    * connection unless the thread is terminated. This method should not be
+    * called directly, instead it should be started as a <code>Thread</code>
+    * instance of <code>Listener</code>.
     */
     public void run() {
         try {
@@ -188,6 +237,11 @@ class Listener implements Runnable {
         }
     }
 
+    /**
+     * Parse a string of commands sent by the client into individual
+     * command-value strings that can then be processed accordingly.
+     * @param line The string of commands sent.
+     */
     private void parseCommands(String line) {
         String[] commands = line.split(";");
         for (String command : commands) {
