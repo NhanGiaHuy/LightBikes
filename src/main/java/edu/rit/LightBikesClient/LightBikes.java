@@ -39,12 +39,29 @@ import java.awt.event.*;
 */
 public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
-    //These are test items, I'm not sure what we need here yet
+    /**
+     * Exit button (under File) closes the program
+     */
     private JMenuItem jmiExit;
-    private JMenuItem jmiConnect;
+
+    /**
+     * About button (under Help) Opens an about dialog
+     */
     private JMenuItem jmiAbout;
+
+    /**
+     * The JPanel that shows the bike trails on the west side of the main GUI
+     */
     private Grid gameGrid;
+
+    /**
+     * Server host name
+     */
     private String hostname;
+
+    /**
+     * Username (used for cha window)
+     */
     private String username;
 
     /**

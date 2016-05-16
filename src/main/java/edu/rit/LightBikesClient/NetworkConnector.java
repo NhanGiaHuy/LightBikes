@@ -35,28 +35,6 @@ import java.util.Scanner;
 */
 public class NetworkConnector {
 
-    //Directional constants
-
-    /**
-     * Constant to represent logical north.
-     */
-    public static final int DIRECTION_NORTH = 0;
-
-    /**
-     * Constant to represent logical east.
-     */
-    public static final int DIRECTION_EAST = 1;
-
-    /**
-     * Constant to represent logical south.
-     */
-    public static final int DIRECTION_SOUTH = 2;
-
-    /**
-     * Constant to represent logical west.
-     */
-    public static final int DIRECTION_WEST = 3;
-
     /**
      * Constant to define what port to connect to the <code>GameServer</code>.
      */
@@ -91,18 +69,15 @@ public class NetworkConnector {
     */
     public void connect() {
         try {
-            //System.out.println("Debug: Network Connector connecting to server");
             s = new Socket(hostname, PORT);
             out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
             new Thread(new Listener(s)).start();
             Thread.sleep(1000);
         }
         catch (Exception e) {
-            //e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Cannot connect to server, restart program");
             System.exit(0);
         }
-        //System.out.println("Debug: connected, sending username");
         sendUsername(username);
     }
 
@@ -136,8 +111,7 @@ public class NetworkConnector {
     * sendCommand() instead as it will format the string correctly for you.
     * @param commandString The command string to send.
     */
-    private void send(String commandString) {
-        //System.out.println("Sending " + commandString);
+    private void send(String commandString) {;
         try {
             if (out == null) {
                 out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
@@ -190,8 +164,6 @@ public class NetworkConnector {
         String command = temp[0];
         String value = temp[1];
 
-        //System.out.println("Processing " + cmdString);
-
         switch (command) {
             case "rsp-user-id":
             setUserID(value);
@@ -225,7 +197,6 @@ public class NetworkConnector {
     * @param value Unused.
     */
     private void startGame(String value) {
-        //System.out.println("Startgame network connector");
         grid.startGame(userID);
     }
 

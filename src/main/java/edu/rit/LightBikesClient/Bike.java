@@ -33,9 +33,24 @@ import javax.swing.JOptionPane;
 */
 public class Bike {
 
+	/**
+	 * Constant to represent logical north.
+	 */
 	public static final int DIRECTION_NORTH = 0;
+
+	/**
+	 * Constant to represent logical east.
+	 */
 	public static final int DIRECTION_EAST = 1;
+
+	/**
+	 * Constant to represent logical south.
+	 */
 	public static final int DIRECTION_SOUTH = 2;
+
+	/**
+	 * Constant to represent logical west.
+	 */
 	public static final int DIRECTION_WEST = 3;
 	/**
 	 * The amount of time in milliseconds between each step for movement.

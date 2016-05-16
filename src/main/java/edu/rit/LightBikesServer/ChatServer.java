@@ -63,7 +63,7 @@ public class ChatServer implements Runnable {
         try {
             srvSock = new ServerSocket(6667);
         } catch (IOException e) {
-            e.printStackTrace();
+            chat.append("Error creating server socket\n");
         }
 
         // Create the socket and wait for a client to connect; once connected, run on its own thread
@@ -71,18 +71,18 @@ public class ChatServer implements Runnable {
             while (true) {
                 chat.append("Waiting for a client.\n");
                 Socket sock = srvSock.accept();
-                chat.append("Client found. \n" + sock);
+                chat.append("Client found:\n" + sock + "\n");
                 clients.add(new ConnectedClient(sock, chat));
                 clients.get(clientCounter).start();
                 clientCounter++;
             }
         } catch (IOException e) {
+            chat.append("Error with server socket connections\n");
             try {
                 srvSock.close();
             } catch (IOException e1) {
-                e1.printStackTrace();
+                chat.append("Error closing server socket\n");
             }
-            e.printStackTrace();
         }
 
     }
@@ -93,12 +93,29 @@ public class ChatServer implements Runnable {
      */
     class ConnectedClient extends Thread {
 
-        // Attributes
-        private int count = 0;
+        /**
+         * Reads messages from clients
+         */
         private BufferedReader br = null;
+
+        /**
+         * Sends messages to clients
+         */
         private PrintWriter pw = null;
+
+        /**
+         * Connection to client
+         */
         private Socket sock;
+
+        /**
+         * Message to send to client
+         */
         private String msg = "";
+
+        /**
+         * Displays chat on server GUI
+         */
         private JTextArea chat;
 
         /**
@@ -114,7 +131,7 @@ public class ChatServer implements Runnable {
                 br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
             } catch (IOException e) {
-
+                chat.append("IOException BufferedReader/Print Writer\n");
             }
         }
 
@@ -170,10 +187,8 @@ public class ChatServer implements Runnable {
                     addToChatWindow(msg);
 
                 } catch (OptionalDataException e) {
-                    System.out.println("OptionalDataException occurred.");
-                    e.printStackTrace();
+                    chat.append("OptionalDataException occurred.\n");
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -186,7 +201,7 @@ public class ChatServer implements Runnable {
                 pw.close();
                 sock.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                chat.append("IOException closing connection\n");
             }
         }
     }

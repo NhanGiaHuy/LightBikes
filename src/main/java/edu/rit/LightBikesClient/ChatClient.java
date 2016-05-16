@@ -32,20 +32,42 @@ import java.net.UnknownHostException;
 */
 public class ChatClient {
 
-    // Attributes
+    /**
+     * Reads messages from server
+     */
     private BufferedReader br;
+
+    /**
+     * Displays chat in GUI
+     */
     private JTextArea chat;
+
+    /**
+     * Text field for user to enter new message into
+     */
     private JTextField newMsg;
+
+    /**
+     * Sends messages to server
+     */
     private PrintWriter pw;
+
+    /**
+     * Socket connection to server
+     */
     private Socket sock;
+
+    /**
+     * Users username for chat
+     */
     private String username;
 
     /**
-    *	Creates a new client for chat services.
-    *	@param chat      The <code>JTextArea</code> to post new messages from
-    *	                 other players to.
-    *	@param newMsg    The initial message to send to the server.
-    */
+     *	Creates a new client for chat services.
+     *	@param chat      The <code>JTextArea</code> to post new messages from
+     *	                 other players to.
+     *	@param newMsg    The initial message to send to the server.
+     */
     public ChatClient(JTextArea chat, JTextField newMsg) {
         username = "";
         this.chat = chat;
@@ -59,15 +81,15 @@ public class ChatClient {
     }
 
     /**
-    * Initial connection to the chat server. This command is to be called by
-    * the menu bar item to initialize the chat server connection. This method
-    * helps ensure that the client successfully connects to the chat server even
-    * when it may not be running.
-    *
-    * @param host      The hostname of the chat server.
-    * @param username  The desired username to use for chatting.
-    * @return True on a successful connection, false otherwise.
-    */
+     * Initial connection to the chat server. This command is to be called by
+     * the menu bar item to initialize the chat server connection. This method
+     * helps ensure that the client successfully connects to the chat server even
+     * when it may not be running.
+     *
+     * @param host      The hostname of the chat server.
+     * @param username  The desired username to use for chatting.
+     * @return True on a successful connection, false otherwise.
+     */
     public boolean connect(String host, String username) {
         this.username = username;
         try {
@@ -91,18 +113,18 @@ public class ChatClient {
     }
 
     /**
-    * Sends a message to the chat server.
-    * @param msg The message to send.
-    */
+     * Sends a message to the chat server.
+     * @param msg The message to send.
+     */
     public void send(String msg) {
         pw.println(msg);
         pw.flush();
     }
 
     /**
-    * Closes the socket connection with the chat server as well as the different
-    * datastreams associated with it.
-    */
+     * Closes the socket connection with the chat server as well as the different
+     * datastreams associated with it.
+     */
     public void closeSocket() {
         try {
             pw.println("s7XUH94y");

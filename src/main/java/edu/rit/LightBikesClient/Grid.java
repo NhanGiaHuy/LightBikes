@@ -61,7 +61,6 @@ public class Grid extends JPanel {
      */
     private final int HEIGHT = GRID_HEIGHT * 5;
 
-    //Colors of lines
     /**
      * Color for player 1's bike trail.
      */
@@ -187,14 +186,14 @@ public class Grid extends JPanel {
      * Creates a popup message dialog to let the user know they won.
      */
     public void won(){
-		JOptionPane.showMessageDialog(null, "You Win!");
+		JOptionPane.showMessageDialog(this, "You Win!");
 	}
 
     /**
      * Creates a popup message dialog to let the user know they lost.
      */
 	public void lost(){
-		JOptionPane.showMessageDialog(null, "You Lost :/");
+		JOptionPane.showMessageDialog(this, "You Lost :/");
 	}
 
 
@@ -219,7 +218,7 @@ public class Grid extends JPanel {
     }
 
     /**
-     * Paints the visible grid on the screen based on the differnt values in the
+     * Paints the visible grid on the screen based on the different values in the
      * <code>grid</code> array.
      * @param g Graphics object
      */
