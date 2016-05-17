@@ -9,8 +9,11 @@
 package edu.rit.LightBikesClient;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.*;
+
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 
 /**
 * LightBikes.java <p>
@@ -93,11 +96,19 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         //Add chat window to east
         JPanel chatFrame = new JPanel(new BorderLayout());
         JTextArea chat = new JTextArea(25,60);
+        chat.setLineWrap(true);
+        chat.setEditable(false);
+        JScrollPane chatScroll = new JScrollPane(chat);
+        DefaultCaret caret1 = (DefaultCaret) chat.getCaret();
+        caret1.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        chatScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+
         JTextField msg = new JTextField(25);
+
         ChatClient chatClient = new ChatClient(chat, msg);
 
         add(chatFrame, BorderLayout.EAST);
-        chatFrame.add(chat, BorderLayout.CENTER);
+        chatFrame.add(chatScroll, BorderLayout.CENTER);
         chatFrame.add(msg, BorderLayout.SOUTH);
 
         //Create Game grid and add to center
