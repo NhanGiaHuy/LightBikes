@@ -71,12 +71,13 @@ public class ChatClient {
     public ChatClient(JTextArea chat, JTextField newMsg) {
         username = "";
         this.chat = chat;
-        chat.setEditable(false);
         this.newMsg = newMsg;
 
         newMsg.addActionListener(actionEvent -> {
-            send(username + ": " + newMsg.getText());
-            newMsg.setText("");
+            if(!newMsg.getText().equals("")) {//make sure user can't send empty message
+                send(username + ": " + newMsg.getText());
+                newMsg.setText("");
+            }
         });
     }
 
@@ -151,7 +152,6 @@ public class ChatClient {
                 try {
                     chat.append(br.readLine() + "\n");
                 } catch (IOException e) {
-                    //tem.out.println("Client closed.");
                     break;
                 }
             }
