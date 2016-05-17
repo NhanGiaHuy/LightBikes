@@ -98,6 +98,11 @@ public class Grid extends JPanel {
     private NetworkConnector connector;
 
     /**
+     * Color of the bike that this client is in control of
+     */
+    private Color userColor;
+
+    /**
      * Creates a new instance of <code>Grid</code> and creates the container for
      * the visible gameplay grid.
      */
@@ -110,6 +115,7 @@ public class Grid extends JPanel {
                 grid[x][y] = 0;
             }
         }
+        userColor = UIManager.getColor("Panel.background");
     }
 
     /**
@@ -145,6 +151,13 @@ public class Grid extends JPanel {
      */
     public void connect(String hostname, String username) {
         connector = new NetworkConnector(hostname, username, this);
+        System.out.println(connector.getUserID());
+        if(connector.getUserID() == 1){
+            userColor = PLAYER1;
+        }else if(connector.getUserID() == 2){
+            userColor = PLAYER2;
+        }
+        repaint();
     }
 
     /**
@@ -244,5 +257,7 @@ public class Grid extends JPanel {
                 }
             }
         }
+        g.setColor(userColor);
+        g.fillRect(0, 501, 501, 505);
     }
 }
