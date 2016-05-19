@@ -116,16 +116,14 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         add(gameGrid, BorderLayout.CENTER);
 
         //Action listener for Menu items
-        ActionListener menuListener = new ActionListener() {
-            public void	actionPerformed(ActionEvent ae){
+        ActionListener menuListener = ae -> {
 
-                Object choice = ae.getSource();
+            Object choice = ae.getSource();
 
-                if(choice == jmiExit){
-                    System.exit(0);
-                }else if(choice == jmiAbout){
-                    JOptionPane.showMessageDialog(null, "About");
-                }
+            if(choice == jmiExit){
+                System.exit(0);
+            }else if(choice == jmiAbout){
+                JOptionPane.showMessageDialog(null, "LightBikes is a multiplayer game between two people. In the game, both players are controlling a \"bike\" across a grid-based area. As the player moves across the board, they leave a wall of \"light\" behind them. If a player runs into the light wall (either their own or the opponent's), they will lose the game. This game is inspired by the same game from the TRON movie.");
             }
         };
 
