@@ -123,7 +123,16 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
             if(choice == jmiExit){
                 System.exit(0);
             }else if(choice == jmiAbout){
-                JOptionPane.showMessageDialog(null, "LightBikes is a multiplayer game between two people. In the game, both players are controlling a \"bike\" across a grid-based area. As the player moves across the board, they leave a wall of \"light\" behind them. If a player runs into the light wall (either their own or the opponent's), they will lose the game. This game is inspired by the same game from the TRON movie.");
+                JOptionPane.showMessageDialog(null, "LightBikes is a multiplayer game between two people. In the " +
+                        "game, both players\n" +
+                        "are controlling a \"bike\" across a grid-based area. As the player moves across\n" +
+                        "the board, they leave a wall of \"light\" behind them. If a player runs into the\n" +
+                        "light wall (either their own or the opponent's), they will lose the game. This\n" +
+                        "game is inspired by the same game from the TRON movie.\n\n" +
+                        "CONTROLS\n" +
+                        "Use the arrow keys to move. The game will start after your opponent connects.\n" +
+                        "Spectators can connect and chat while you are playing."
+                );
             }
         };
 
