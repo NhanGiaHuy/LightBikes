@@ -91,7 +91,7 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         jmiAbout = new JMenuItem("About");
         jmHelp.add(jmiAbout);
         menuBar.add(jmHelp);
-        add(menuBar, BorderLayout.NORTH);
+        setJMenuBar(menuBar);
 
         //Add chat window to east
         JPanel chatFrame = new JPanel(new BorderLayout());
