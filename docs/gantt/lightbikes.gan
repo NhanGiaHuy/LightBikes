@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="63" order="0"/>
         <field id="tpd4" name="Begin date" width="18" order="1"/>
         <field id="tpd5" name="End date" width="17" order="2"/>
-        <timeline><![CDATA[87,89,62,140,107,114,94,134,138,39,36,5,101,7,64,10,41,105,96,131,83,4,136,69,91,16,111,103,109,125,128,28,130,77]]></timeline>
+        <timeline><![CDATA[16,5,83,64,134,28,94,89,96,103,125,138,131,105,36,77,7,128,39,101,69,10,41,142,4,109,107,87,136,62,91,140,130,111,114]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="50" order="0"/>
@@ -61,10 +61,10 @@
         <task id="91" name="Apply JavaDocs comments to project" color="#8cb6ce" meeting="false" start="2016-05-12" duration="1" complete="0" priority="0" expand="true"/>
         <task id="111" name="Project planning, blueprinting, whiteboarding" color="#8cb6ce" meeting="false" start="2016-04-04" duration="5" complete="0" priority="2" expand="true"/>
         <task id="125" name="Create project presentation" color="#8cb6ce" meeting="false" start="2016-05-11" duration="1" complete="0" priority="2" expand="true"/>
-        <task id="128" name="Update design document with feedback from professor" color="#8cb6ce" meeting="false" start="2016-05-13" duration="2" complete="0" priority="2" expand="true"/>
+        <task id="128" name="Update design document with feedback from professor" color="#8cb6ce" meeting="false" start="2016-05-16" duration="3" complete="0" priority="2" expand="true"/>
+        <task id="142" name="Create a live demo video" color="#8cb6ce" meeting="false" start="2016-05-18" duration="1" complete="0" expand="true"/>
         <task id="130" name="Take screenshots of working game demo" color="#8cb6ce" meeting="false" start="2016-05-12" duration="1" complete="0" expand="true"/>
         <task id="94" name="Create a server GUI" color="#8cb6ce" meeting="false" start="2016-05-12" duration="2" complete="0" priority="3" expand="true"/>
-        <task id="134" name="Update design document based on feedback" color="#8cb6ce" meeting="false" start="2016-05-16" duration="3" complete="0" priority="4" expand="true"/>
         <task id="136" name="Expand on existing JavaDocs" color="#8cb6ce" meeting="false" start="2016-05-13" duration="2" complete="0" expand="true"/>
         <task id="138" name="Final team check-in" color="#8cb6ce" meeting="true" start="2016-05-18" duration="0" complete="0" priority="2" expand="true"/>
         <task id="140" name="Add info about gameplay instructions" color="#8cb6ce" meeting="false" start="2016-05-17" duration="1" complete="0" expand="true"/>
@@ -95,9 +95,9 @@
         <allocation task-id="128" resource-id="0" function="4" responsible="true" load="100.0"/>
         <allocation task-id="130" resource-id="0" function="4" responsible="true" load="100.0"/>
         <allocation task-id="131" resource-id="0" function="4" responsible="true" load="100.0"/>
-        <allocation task-id="134" resource-id="0" function="4" responsible="true" load="100.0"/>
         <allocation task-id="140" resource-id="0" function="4" responsible="true" load="100.0"/>
         <allocation task-id="138" resource-id="0" function="4" responsible="true" load="100.0"/>
+        <allocation task-id="142" resource-id="0" function="4" responsible="false" load="100.0"/>
         <allocation task-id="4" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="16" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="7" resource-id="1" function="1" responsible="true" load="100.0"/>
@@ -112,6 +112,7 @@
         <allocation task-id="114" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="131" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="138" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="142" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="41" resource-id="2" function="3" responsible="true" load="100.0"/>
         <allocation task-id="39" resource-id="2" function="3" responsible="true" load="100.0"/>
         <allocation task-id="69" resource-id="2" function="3" responsible="true" load="100.0"/>
