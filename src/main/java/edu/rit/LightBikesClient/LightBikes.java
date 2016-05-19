@@ -43,14 +43,24 @@ import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 public class LightBikes extends JFrame implements KeyListener, MouseListener {
 
     /**
+     * Constant identifying the version of the game being played to the user.
+     */
+    private final String GAME_VERSION = "0.1";
+
+    /**
      * Exit button (under File) closes the program
      */
     private JMenuItem jmiExit;
 
     /**
-     * About button (under Help) Opens an about dialog
+     * About button (under Help) opens an about dialog
      */
     private JMenuItem jmiAbout;
+
+    /**
+     * Credit button (under Help) gives details about developers and game version
+     */
+    private JMenuItem jmiCredit;
 
     /**
      * The JPanel that shows the bike trails on the west side of the main GUI
@@ -90,6 +100,8 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
         JMenu jmHelp = new JMenu("Help");
         jmiAbout = new JMenuItem("About");
         jmHelp.add(jmiAbout);
+        jmiCredit = new JMenuItem("Credit");
+        jmHelp.add(jmiCredit);
         menuBar.add(jmHelp);
         setJMenuBar(menuBar);
 
@@ -133,11 +145,18 @@ public class LightBikes extends JFrame implements KeyListener, MouseListener {
                         "Use the arrow keys to move. The game will start after your opponent connects.\n" +
                         "Spectators can connect and chat while you are playing."
                 );
+            }else if(choice == jmiCredit){
+                JOptionPane.showMessageDialog(null, "LightBikes v" + GAME_VERSION + "\n" +
+                        "Created in April - May 2016.\n\n" +
+                        "DEVELOPERS:\n" + "Felice Aprile\n" + "Justin W. Flory\n" + "Malcolm Jones\n" +
+                        "Timothy Endersby"
+                );
             }
         };
 
         jmiExit.addActionListener(menuListener);
         jmiAbout.addActionListener(menuListener);
+        jmiCredit.addActionListener(menuListener);
 
         pack();
         setLocationRelativeTo(null);
